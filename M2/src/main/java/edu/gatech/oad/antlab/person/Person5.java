@@ -30,8 +30,31 @@ public class Person5 {
 	 * @return the modified string
 	 */
 	private String calc(String input) {
-	  //Person 5 put your implementation here
-	  return null;
+		if (input == null || input == "") {
+			return "";
+		} else if ((input.length() == 1) || (input.length() == 2)) {
+			return input;
+		} else if (input.length() == 3){
+			String rotated = "xxx";
+			rotated.charAt(0) = input.charAt(2);
+			rotated.charAt(1) = input.charAt(0);
+			rotated.charAt(2) = input.charAt(1);
+		} else if (input.length() == 4){
+			String rotated = "xxxx";
+			rotated.charAt(0) = input.charAt(2);
+			rotated.charAt(1) = input.charAt(3);
+			rotated.charAt(2) = input.charAt(0);
+			rotated.charAt(3) = input.charAt(1);
+		} else {
+		    String rotated = "";
+		    rotated.charAt(0) = input.charAt(input.length() - 1);
+		    rotated.charAt(1) = input.charAt(input.length() - 2);
+		    rotated.charAt(input.length() - 1) = input.charAt(1);
+			rotated.charAt(input.length() - 2) = input.charAt(0);
+		    for (int i = 2; i < input.length() - 4; i++) {
+			   rotated.charAt(i) = input.charAt(i + 2);
+		    }
+	    }
 	}
 	
 	/**
@@ -44,6 +67,11 @@ public class Person5 {
 	 */
 	public String toString(String input) {
 	  return name + calc(input);
+	}
+
+	public static void main(String[] args) {
+		Person5 bobby = new Person5("bobby");
+		System.out.println(bobby.calc("shmurda"));
 	}
 
 }
