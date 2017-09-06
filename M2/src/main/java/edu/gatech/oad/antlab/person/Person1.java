@@ -35,7 +35,7 @@ public class Person1 {
     String first = "";
     String result = "";
     second = second + input.charAt(0) + input.charAt(1);
-    for (int i = 2; i < string.length(); i++) {
+    for (int i = 2; i < input.length(); i++) {
       first = first + input.charAt(i);
     }
     result = first + second;

@@ -34,7 +34,7 @@ public class Person2 {
 
     	for(int i = 0; i < a.length; i++)
     	{
-    	    int j = Math.rand(a.length);
+    	    int j = (int)(Math.random() * a.length);
         	char temp = a[i]; 
         	a[i] = a[j];  
         	a[j] = temp;
