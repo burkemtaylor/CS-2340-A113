@@ -35,25 +35,28 @@ public class Person5 {
 		} else if ((input.length() == 1) || (input.length() == 2)) {
 			return input;
 		} else if (input.length() == 3){
-			String rotated = "xxx";
-			rotated.charAt(0) = input.charAt(2);
-			rotated.charAt(1) = input.charAt(0);
-			rotated.charAt(2) = input.charAt(1);
+			char[] rotated = input.toCharArray();
+			rotated[0] = input.charAt(2);
+			rotated[1] = input.charAt(0);
+			rotated[2] = input.charAt(1);
+            return new String(rotated);
 		} else if (input.length() == 4){
-			String rotated = "xxxx";
-			rotated.charAt(0) = input.charAt(2);
-			rotated.charAt(1) = input.charAt(3);
-			rotated.charAt(2) = input.charAt(0);
-			rotated.charAt(3) = input.charAt(1);
+            char[] rotated = input.toCharArray();
+			rotated[0] = input.charAt(2);
+			rotated[1] = input.charAt(3);
+			rotated[2] = input.charAt(0);
+			rotated[3] = input.charAt(1);
+            return new String(rotated);
 		} else {
-		    String rotated = "";
-		    rotated.charAt(0) = input.charAt(input.length() - 1);
-		    rotated.charAt(1) = input.charAt(input.length() - 2);
-		    rotated.charAt(input.length() - 1) = input.charAt(1);
-			rotated.charAt(input.length() - 2) = input.charAt(0);
+            char[] rotated = input.toCharArray();
+		    rotated[0] = input.charAt(input.length() - 1);
+		    rotated[1] = input.charAt(input.length() - 2);
+		    rotated[input.length() - 1] = input.charAt(1);
+			rotated[input.length() - 2] = input.charAt(0);
 		    for (int i = 2; i < input.length() - 4; i++) {
-			   rotated.charAt(i) = input.charAt(i + 2);
+			   rotated[i] = input.charAt(i + 2);
 		    }
+		    return new String(rotated);
 	    }
 	}
 	
