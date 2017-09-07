@@ -1,7 +1,9 @@
 defaultTasks 'jar'
 
 apply plugin: 'java'
+apply plugin: "application"
 
+mainClassName = 'edu.gatech.oad.antlab.pkg1.AntLabMain'
 sourceCompatibility = '1.8'
 version = '1.0'
 
