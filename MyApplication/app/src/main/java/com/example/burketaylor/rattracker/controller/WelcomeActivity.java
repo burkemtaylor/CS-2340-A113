@@ -10,12 +10,12 @@ import android.view.View;
 
 import com.example.burketaylor.rattracker.R;
 
-public class MainActivity extends AppCompatActivity {
+public class WelcomeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_welcome);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -29,8 +29,8 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void logout(View view) {
-        Intent intent = new Intent(this, WelcomeActivity.class);
+    public void signIn (View view) {
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 
