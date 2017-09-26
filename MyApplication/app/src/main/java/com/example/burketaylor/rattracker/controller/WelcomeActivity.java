@@ -1,4 +1,4 @@
-package com.example.burketaylor.rattracker.Controller;
+package com.example.burketaylor.rattracker.controller;
 
 import android.content.Intent;
 import android.os.Bundle;

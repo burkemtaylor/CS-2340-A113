@@ -1,4 +1,4 @@
-package com.example.burketaylor.rattracker.Controller;
+package com.example.burketaylor.rattracker.controller;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void logout(View view) {
-        Intent intent = new Intent(this, WelcomeActivity.class);
+        Intent intent = new Intent(this, com.example.burketaylor.rattracker.controller.WelcomeActivity.class);
         startActivity(intent);
     }
 

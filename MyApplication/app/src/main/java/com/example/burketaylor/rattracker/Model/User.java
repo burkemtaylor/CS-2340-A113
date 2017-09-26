@@ -1,4 +1,4 @@
-package com.example.burketaylor.rattracker.Model;
+package com.example.burketaylor.rattracker.model;
 
 /**
  * Created by Neeraj on 9/19/17.

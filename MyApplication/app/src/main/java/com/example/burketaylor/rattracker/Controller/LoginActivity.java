@@ -1,4 +1,4 @@
-package com.example.burketaylor.rattracker.Controller;
+package com.example.burketaylor.rattracker.controller;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -31,7 +31,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.burketaylor.rattracker.R;
-import com.example.burketaylor.rattracker.Model.User;
+import com.example.burketaylor.rattracker.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
