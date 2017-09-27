@@ -19,7 +19,7 @@ public class Database {
 
 
     private static ArrayList<User> userBase = new ArrayList<>();
-    private static ArrayList<Admin> adminBase = new ArrayList<>();
+
 
 
     /**
@@ -31,17 +31,7 @@ public class Database {
 
         userBase.add(user);
     }
-
-    /**
-     *
-     * @param admin the Admin that you want to add to the database of admins
-     */
-
-    public static void addAdmin(Admin admin) {
-
-        adminBase.add(admin);
-
-    }
+    
 
 
     /**
@@ -61,6 +51,7 @@ public class Database {
         return null;
 
     }
+
 
 
 
