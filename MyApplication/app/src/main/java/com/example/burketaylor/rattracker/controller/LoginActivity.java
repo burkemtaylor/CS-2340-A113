@@ -204,6 +204,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
     }
 
+    /**
+     * Cancels login attempt and returns to welcome screen
+     * @param view current view
+     */
     public void cancel (View view) {
         Intent intent = new Intent(this, WelcomeActivity.class);
         startActivity(intent);
