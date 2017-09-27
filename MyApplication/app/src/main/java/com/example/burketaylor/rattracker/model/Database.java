@@ -2,6 +2,8 @@ package com.example.burketaylor.rattracker.model;
 
 /**
  * Created by gecag on 9/26/2017.
+ *
+ * @author Greg
  */
 
 import java.util.ArrayList;
