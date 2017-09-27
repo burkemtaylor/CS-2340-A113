@@ -5,11 +5,7 @@ package com.example.burketaylor.rattracker.model;
  */
 
 public class Admin extends User {
-    /**
-     * Constructor for an admin user
-     * @param uN username
-     * @param pass password
-     */
+
     public Admin (String uN, String pass) {
         super(uN, pass, false);
     }
