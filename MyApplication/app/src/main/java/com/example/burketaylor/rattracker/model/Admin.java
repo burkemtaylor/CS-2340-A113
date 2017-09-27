@@ -5,6 +5,7 @@ package com.example.burketaylor.rattracker.model;
  */
 
 public class Admin extends User {
+
     public Admin (String uN, String pass) {
         super(uN, pass, false);
     }
