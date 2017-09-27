@@ -2,6 +2,8 @@ package com.example.burketaylor.rattracker.model;
 
 /**
  * Created by Neeraj on 9/26/17.
+ *
+ * @author Neeraj
  */
 
 public class Admin extends User {
