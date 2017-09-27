@@ -29,6 +29,10 @@ public class WelcomeActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Pulls up login/registration screen
+     * @param view current view
+     */
     public void signIn (View view) {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);

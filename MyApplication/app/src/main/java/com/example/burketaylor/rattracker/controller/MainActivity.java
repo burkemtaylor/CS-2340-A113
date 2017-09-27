@@ -29,6 +29,10 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Logs user out and returns to welcome screen
+     * @param view current view
+     */
     public void logout(View view) {
         Intent intent = new Intent(this, com.example.burketaylor.rattracker.controller.WelcomeActivity.class);
         startActivity(intent);
