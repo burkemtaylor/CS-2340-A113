@@ -30,11 +30,20 @@ public class WelcomeActivity extends AppCompatActivity {
     }
 
     /**
-     * Pulls up login/registration screen
+     * Pulls up login screen
      * @param view current view
      */
     public void signIn (View view) {
         Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
+
+    /**
+     * Pulls up registration screen
+     * @param view current view
+     */
+    public void register (View view) {
+        Intent intent = new Intent(this, RegistrationActivity.class);
         startActivity(intent);
     }
 

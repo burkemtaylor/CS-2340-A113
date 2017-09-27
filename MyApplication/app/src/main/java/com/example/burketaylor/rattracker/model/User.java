@@ -19,6 +19,18 @@ public class User implements Comparable<User>{
         password = pass;
         isLocked = locked;
     }
+
+    /**
+     * Constructs a user
+     * @param uN: username
+     * @param pass: password
+     */
+    public User(String uN, String pass) {
+        userName = uN;
+        password = pass;
+        isLocked = false;
+    }
+
     /**
      * Constructs a user
      */
