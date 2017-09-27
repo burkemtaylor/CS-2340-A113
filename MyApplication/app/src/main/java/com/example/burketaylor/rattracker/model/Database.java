@@ -3,10 +3,14 @@ package com.example.burketaylor.rattracker.model;
 /**
  * Created by gecag on 9/26/2017.
  *
+<<<<<<< HEAD
  *
  * Class to store users and admins. Has methods to add users and admins to their respective
  * arraylists and also to search the current database for a user with the specified username and
  * password
+=======
+ * @author Greg
+>>>>>>> d8f35cf177136d251cecc714fb3d8dfdca4f9eb4
  */
 
 import java.util.ArrayList;
