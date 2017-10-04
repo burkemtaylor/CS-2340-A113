@@ -26,9 +26,7 @@ public class User implements Comparable<User>{
      * @param pass: password
      */
     public User(String uN, String pass) {
-        userName = uN;
-        password = pass;
-        isLocked = false;
+        this(uN, pass, false);
     }
 
     /**
