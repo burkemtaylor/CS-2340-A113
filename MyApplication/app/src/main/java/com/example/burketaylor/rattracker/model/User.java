@@ -8,6 +8,21 @@ public class User implements Comparable<User>{
     private String userName;
     private String password;
     private boolean isLocked;
+    private UserType userType;
+
+    /**
+     * Constructs a user
+     * @param uN: username
+     * @param pass: password
+     * @param locked: isLocked
+     */
+    public User(String uN, String pass, boolean locked, UserType type) {
+        userName = uN;
+        password = pass;
+        isLocked = locked;
+        userType = type;
+    }
+
     /**
      * Constructs a user
      * @param uN: username
@@ -15,9 +30,7 @@ public class User implements Comparable<User>{
      * @param locked: isLocked
      */
     public User(String uN, String pass, boolean locked) {
-        userName = uN;
-        password = pass;
-        isLocked = locked;
+        this(uN, pass, locked, UserType.USER);
     }
 
     /**
@@ -74,6 +87,23 @@ public class User implements Comparable<User>{
     private void setPassword(String pass) {
         password = pass;
     }
+
+    /**
+     * returns user type
+     * @return enum value of user type
+     */
+    public UserType getUserType() {
+        return userType;
+    }
+
+    /**
+     * sets userType to inputted value
+     * @param userType userType to be assigned
+     */
+    public void setUserType(UserType userType) {
+        this.userType = userType;
+    }
+
     @Override
     public int compareTo(User other) {
         if (other.getUserName().equals(this.userName)
