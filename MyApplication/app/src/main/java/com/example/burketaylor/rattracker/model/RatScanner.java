@@ -8,6 +8,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Scanner;
 import java.util.HashMap;
 
@@ -16,7 +17,7 @@ public class RatScanner {
     public static HashMap<Integer, RatSighting> scan(String file) throws FileNotFoundException, IOException {
 
 
-        BufferedReader reader = new BufferedReader(new FileReader(file));
+        BufferedReader reader = new BufferedReader(new InputStreamReader(RatScanner.class.getClassLoader().getResourceAsStream(file)));
 
         // read file line by line
         String line = null;
