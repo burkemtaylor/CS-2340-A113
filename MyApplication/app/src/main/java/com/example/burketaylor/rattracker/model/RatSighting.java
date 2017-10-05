@@ -37,11 +37,14 @@ public class RatSighting{
         latitude = lat;
         longitude = lon;
     }
+    public RatSighting() {
+        this(0, "", "", 0, "", "", "", 0.0, 0.0);
+    }
 
     /**
      * returns uniquekey
      */
-    private int getUniqueKey() {
+    public int getUniqueKey() {
         return uniquekey;
     }
 
@@ -49,14 +52,14 @@ public class RatSighting{
      * sets uniquekey to a new key
      * @param newkey: new key to set key to
      */
-    private void setUniqueKey(int newkey) {
+    public void setUniqueKey(int newkey) {
         uniquekey = newkey;
     }
 
     /**
      * returns datetime
      */
-    private String getDateTime() {
+    public String getDateTime() {
         return datetime;
     }
 
@@ -64,14 +67,14 @@ public class RatSighting{
      * sets uniquekey to a new key
      * @param dt: new datetime to set datetime to
      */
-    private void setDateTime(String dt) {
+    public void setDateTime(String dt) {
         datetime = dt;
     }
 
     /**
      * returns loctype
      */
-    private String getLoctype() {
+    public String getLoctype() {
         return loctype;
     }
 
@@ -79,14 +82,14 @@ public class RatSighting{
      * sets loctype to a new lt
      * @param lt: new loctype to set loctype to
      */
-    private void setLoctype(String lt) {
+    public void setLoctype(String lt) {
         loctype = lt;
     }
 
     /**
      * returns zipcode
      */
-    private int getZipCode() {
+    public int getZipCode() {
         return zipcode;
     }
 
@@ -94,14 +97,14 @@ public class RatSighting{
      * sets zipcode to a new zip
      * @param newzip: new zip to set zip to
      */
-    private void setZipCode(int newzip) {
+    public void setZipCode(int newzip) {
         zipcode = newzip;
     }
 
     /**
      * returns address
      */
-    private String getAddress() {
+    public String getAddress() {
         return address;
     }
 
@@ -109,14 +112,14 @@ public class RatSighting{
      * sets address to a new address
      * @param addy: new address to set address to
      */
-    private void setAddress(String addy) {
+    public void setAddress(String addy) {
         address = addy;
     }
 
     /**
      * returns city
      */
-    private String getCity() {
+    public String getCity() {
         return city;
     }
 
@@ -124,14 +127,14 @@ public class RatSighting{
      * sets city to a new city
      * @param cit: new city to set city to
      */
-    private void setCity(String cit) {
+    public void setCity(String cit) {
         city = cit;
     }
 
     /**
      * returns borough
      */
-    private String getBorough() {
+    public String getBorough() {
         return borough;
     }
 
@@ -139,14 +142,14 @@ public class RatSighting{
      * sets borough to a new borough
      * @param bor: new borough to set borough to
      */
-    private void setBorough(String bor) {
+    public void setBorough(String bor) {
         borough = bor;
     }
 
     /**
      * returns latitude
      */
-    private double getLat() {
+    public double getLat() {
         return latitude;
     }
 
@@ -154,14 +157,14 @@ public class RatSighting{
      * sets latitude to a new latitude
      * @param lat: new lat to set lat to
      */
-    private void setLat(double lat) {
+    public void setLat(double lat) {
         latitude = lat;
     }
 
     /**
      * returns longitude
      */
-    private double getLon() {
+    public double getLon() {
         return longitude;
     }
 
@@ -169,7 +172,7 @@ public class RatSighting{
      * sets longitude to a new key
      * @param lon: new longitude to set longitude to
      */
-    private void setLon(double lon) {
+    public void setLon(double lon) {
         longitude = lon;
     }
 
