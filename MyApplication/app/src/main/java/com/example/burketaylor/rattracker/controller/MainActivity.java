@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         //if ( true) {
         String username = getIntent().getStringExtra("user");
         Log.d("user", "idk mannnn");
-        userTextView.setText(username);
+        userTextView.setText("Welcome, " + username);
 //        } else {
 //            userTextView.setText("uh oh");
 //        }
