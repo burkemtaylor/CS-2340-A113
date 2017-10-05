@@ -4,6 +4,8 @@ package com.example.burketaylor.rattracker.model;
  * Created by gecag on 10/3/2017.
  */
 
+import android.util.Log;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -80,9 +82,12 @@ public class RatScanner {
                 index++;
             }
             index = 0;
+            ratSightingMap.put(rs.getUniqueKey(), rs);
+            Log.d("Current Id", Integer.toString(rs.getUniqueKey()));
+            rs = new RatSighting();
         }
 
-        ratSightingMap.put(rs.getUniqueKey(), rs);
+
 
 
         //close reader
