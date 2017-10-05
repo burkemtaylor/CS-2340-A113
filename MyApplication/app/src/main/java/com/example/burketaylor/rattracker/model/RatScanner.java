@@ -72,8 +72,9 @@ public class RatScanner {
 
                 index++;
             }
+            index = 0;
         }
-        index = 0;
+
         ratSightingMap.put(rs.getUniqueKey(), rs);
 
 
