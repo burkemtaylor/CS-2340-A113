@@ -5,8 +5,6 @@ package com.example.burketaylor.rattracker.model;
  */
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Scanner;
@@ -14,7 +12,15 @@ import java.util.HashMap;
 
 public class RatScanner {
 
-    public static HashMap<Integer, RatSighting> scan(String file) throws FileNotFoundException, IOException {
+
+    /**
+     *
+     * @param file name of desired file
+     * @return  map of the all scanned in RatSighting objects
+     *
+     * @throws IOException if there is an error while reading in the data
+     */
+    public static HashMap<Integer, RatSighting> scan(String file) throws IOException {
 
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(RatScanner.class.getClassLoader().getResourceAsStream(file)));
