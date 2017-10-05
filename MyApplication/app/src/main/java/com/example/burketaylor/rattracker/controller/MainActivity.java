@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
         TextView userTextView = (TextView) findViewById(R.id.username_display);
         //if ( true) {
         String username = getIntent().getStringExtra("user");
-        Log.d("user", "idk mannnn");
         userTextView.setText("Welcome, " + username);
 //        } else {
 //            userTextView.setText("uh oh");
