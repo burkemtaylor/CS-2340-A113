@@ -184,7 +184,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }*/
 
         if (Database.getUser(mEmailView.getText().toString(), mPasswordView.getText().toString()) != null) {
+            String username = mEmailView.getText().toString();
             Intent intent = new Intent(this, MainActivity.class);
+            intent.putExtra("user", username);
             startActivity(intent);
         } else {
             mEmailView.setError("Username or Password invalid.");
