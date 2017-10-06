@@ -6,8 +6,11 @@ package com.example.burketaylor.rattracker.model;
 
 import android.util.Log;
 
+import com.example.burketaylor.rattracker.R;
+
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Scanner;
 import java.util.HashMap;
@@ -17,15 +20,15 @@ public class RatScanner {
 
     /**
      *
-     * @param file name of desired file
+     * @param in name of desired file
      * @return  map of the all scanned in RatSighting objects
      *
      * @throws IOException if there is an error while reading in the data
      */
-    public static HashMap<Integer, RatSighting> scan(String file) throws IOException {
+    public static HashMap<Integer, RatSighting> scan(InputStream in) throws IOException {
 
 
-        BufferedReader reader = new BufferedReader(new InputStreamReader(RatScanner.class.getClassLoader().getResourceAsStream(file)));
+        BufferedReader reader = new BufferedReader(new InputStreamReader(in));
 
         // read file line by line
         String line = null;
@@ -60,7 +63,11 @@ public class RatScanner {
                     rs.setLoctype(data);
 
                 } else if (index == 8) {
-                    rs.setZipCode(Integer.parseInt(data));
+                    if (!data.equals("")) {
+                        rs.setZipCode(Integer.parseInt(data));
+                    } else {
+                        rs.setZipCode(0);
+                    }
 
                 } else if (index ==9) {
                     rs.setAddress(data);
@@ -72,10 +79,18 @@ public class RatScanner {
                     rs.setBorough(data);
 
                 } else if (index == 49) {
-                    rs.setLat(Double.parseDouble(data));
+                    if (!data.equals("")) {
+                        rs.setLat(Double.parseDouble(data));
+                    } else {
+                        rs.setLat(0);
+                    }
 
                 } else if (index == 50) {
-                    rs.setLon(Double.parseDouble(data));
+                    if (!data.equals("")) {
+                        rs.setLon(Double.parseDouble(data));
+                    } else {
+                        rs.setLon(0);
+                    }
 
                 }
 

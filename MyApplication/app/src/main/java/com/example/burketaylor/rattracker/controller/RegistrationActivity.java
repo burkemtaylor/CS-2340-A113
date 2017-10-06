@@ -195,7 +195,7 @@ public class RegistrationActivity extends AppCompatActivity implements LoaderCal
 
         if (email != null && password != null) {
             Database.addUser(new User(email, password));
-            Intent intent = new Intent(this, MainActivity.class);
+            Intent intent = new Intent(this, ListActivity.class);
             intent.putExtra("user", email);
             startActivity(intent);
         } else {

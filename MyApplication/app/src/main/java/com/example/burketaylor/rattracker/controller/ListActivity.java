@@ -6,6 +6,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -13,6 +14,8 @@ import android.widget.ListView;
 import com.example.burketaylor.rattracker.R;
 import com.example.burketaylor.rattracker.model.RatSighting;
 import com.example.burketaylor.rattracker.model.RatSightingDatabase;
+
+import java.io.IOException;
 
 public class ListActivity extends AppCompatActivity {
 
@@ -22,6 +25,12 @@ public class ListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        try {
+            new RatSightingDatabase(this.getResources().openRawResource(R.raw.rat_sightings));
+        } catch (IOException e) {
+            Log.d("Scan error", e.getLocalizedMessage());
+        }
 
         Object[] ratArray = RatSightingDatabase.getMap().values().toArray();
         String[] mobileArray = new String[RatSightingDatabase.getMap().size()];
