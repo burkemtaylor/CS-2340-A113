@@ -11,7 +11,7 @@ import java.util.HashMap;
  */
 
 public class RatSightingDatabase {
-    private static HashMap<Integer, RatSighting> ratSightingMap= new HashMap<>();
+    private static HashMap<String, RatSighting> ratSightingMap= new HashMap<>();
 
     public RatSightingDatabase(InputStream in) throws IOException {
         //try {
@@ -22,7 +22,7 @@ public class RatSightingDatabase {
         //}
     }
 
-    public static HashMap<Integer, RatSighting> getMap() {
+    public static HashMap<String, RatSighting> getMap() {
         return ratSightingMap;
     }
 }

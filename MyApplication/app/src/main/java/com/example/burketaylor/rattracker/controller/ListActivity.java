@@ -39,7 +39,7 @@ public class ListActivity extends AppCompatActivity {
         }
 
         ArrayAdapter adapter = new ArrayAdapter<String>(this,
-                R.layout.activity_list, mobileArray);
+               android.R.layout.simple_list_item_1, mobileArray);
 
         ListView listView = (ListView) findViewById(R.id.mobile_list);
         listView.setAdapter(adapter);

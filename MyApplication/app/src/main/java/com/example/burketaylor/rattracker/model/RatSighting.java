@@ -5,15 +5,15 @@ package com.example.burketaylor.rattracker.model;
  */
 
 public class RatSighting{
-    private int uniquekey;
+    private String uniquekey;
     private String datetime;
     private String loctype;
-    private int zipcode;
+    private String zipcode;
     private String address;
     private String city;
     private String borough;
-    private double latitude;
-    private double longitude;
+    private String latitude;
+    private String longitude;
     /**
      * Constructs a user
      * @param key: uniquekey
@@ -26,7 +26,7 @@ public class RatSighting{
      * @param lat: latitude;
      * @param lon: longitude;
      */
-    public RatSighting(int key, String dt, String lt, int zc, String addy, String ct, String bor, double lat, double lon) {
+    public RatSighting(String key, String dt, String lt, String zc, String addy, String ct, String bor, String lat, String lon) {
         uniquekey = key;
         datetime = dt;
         loctype = lt;
@@ -38,13 +38,13 @@ public class RatSighting{
         longitude = lon;
     }
     public RatSighting() {
-        this(0, "", "", 0, "", "", "", 0.0, 0.0);
+        this("", "", "", "", "", "", "", "","");
     }
 
     /**
      * returns uniquekey
      */
-    public int getUniqueKey() {
+    public String getUniqueKey() {
         return uniquekey;
     }
 
@@ -52,7 +52,7 @@ public class RatSighting{
      * sets uniquekey to a new key
      * @param newkey: new key to set key to
      */
-    public void setUniqueKey(int newkey) {
+    public void setUniqueKey(String newkey) {
         uniquekey = newkey;
     }
 
@@ -89,7 +89,7 @@ public class RatSighting{
     /**
      * returns zipcode
      */
-    public int getZipCode() {
+    public String getZipCode() {
         return zipcode;
     }
 
@@ -97,7 +97,7 @@ public class RatSighting{
      * sets zipcode to a new zip
      * @param newzip: new zip to set zip to
      */
-    public void setZipCode(int newzip) {
+    public void setZipCode(String newzip) {
         zipcode = newzip;
     }
 
@@ -149,7 +149,7 @@ public class RatSighting{
     /**
      * returns latitude
      */
-    public double getLat() {
+    public String getLat() {
         return latitude;
     }
 
@@ -157,14 +157,14 @@ public class RatSighting{
      * sets latitude to a new latitude
      * @param lat: new lat to set lat to
      */
-    public void setLat(double lat) {
+    public void setLat(String lat) {
         latitude = lat;
     }
 
     /**
      * returns longitude
      */
-    public double getLon() {
+    public String getLon() {
         return longitude;
     }
 
@@ -172,7 +172,7 @@ public class RatSighting{
      * sets longitude to a new key
      * @param lon: new longitude to set longitude to
      */
-    public void setLon(double lon) {
+    public void setLon(String lon) {
         longitude = lon;
     }
 

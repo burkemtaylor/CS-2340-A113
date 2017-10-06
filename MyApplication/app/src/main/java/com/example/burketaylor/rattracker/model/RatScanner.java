@@ -25,7 +25,7 @@ public class RatScanner {
      *
      * @throws IOException if there is an error while reading in the data
      */
-    public static HashMap<Integer, RatSighting> scan(InputStream in) throws IOException {
+    public static HashMap<String, RatSighting> scan(InputStream in) throws IOException {
 
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(in));
@@ -33,7 +33,7 @@ public class RatScanner {
         // read file line by line
         String line;
 
-        HashMap<Integer, RatSighting> ratSightingMap = new HashMap<Integer, RatSighting>();
+        HashMap<String, RatSighting> ratSightingMap = new HashMap<>();
 
 
         RatSighting rs;
@@ -41,11 +41,11 @@ public class RatScanner {
 
         while ((line = reader.readLine()) != null) {
             if (lineIndex > 0) {
-                String[] tokens = line.split(",");
+                String[] tokens = line.split(",", -1);
                 rs = new RatSighting(tokens[0], tokens[1], tokens[7], tokens[8], tokens[9],
                         tokens[16], tokens[23], tokens[49], tokens[50]);
                 ratSightingMap.put(rs.getUniqueKey(), rs);
-                Log.d("Current Id", Integer.toString(rs.getUniqueKey()));
+                Log.d("Current Id", rs.getUniqueKey());
             } else {
                 lineIndex++;
             }
