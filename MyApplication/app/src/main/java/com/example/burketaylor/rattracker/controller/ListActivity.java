@@ -61,6 +61,12 @@ public class ListActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void selected(View view) {
+        Intent intent = new Intent(this, com.example.burketaylor.rattracker.controller.RatInfoActivity.class);
+
+
+    }
+
     private class ScanTask extends AsyncTask<InputStream, Void, Void> {
 
         protected Void doInBackground(InputStream... in) {
