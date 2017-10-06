@@ -31,81 +31,29 @@ public class RatScanner {
         BufferedReader reader = new BufferedReader(new InputStreamReader(in));
 
         // read file line by line
-        String line = null;
-        Scanner scanner = null;
-
-        int index = 0;
-
+        String line;
 
         HashMap<Integer, RatSighting> ratSightingMap = new HashMap<Integer, RatSighting>();
 
 
-        RatSighting rs = new RatSighting();
+        RatSighting rs;
         int lineIndex = 0;
 
         while ((line = reader.readLine()) != null) {
+            if (lineIndex > 0) {
+                String[] tokens = line.split(",");
+                rs = new RatSighting(tokens[0], tokens[1], tokens[7], tokens[8], tokens[9],
+                        tokens[16], tokens[23], tokens[49], tokens[50]);
+                ratSightingMap.put(rs.getUniqueKey(), rs);
+                Log.d("Current Id", Integer.toString(rs.getUniqueKey()));
+            } else {
+                lineIndex++;
+            }
+
             //rs stands for rat sighting
 
-            scanner = new Scanner(line);
-            scanner.useDelimiter(",");
 
-
-            while (scanner.hasNext() && lineIndex > 0) {
-                String data = scanner.next();
-
-                if (index == 0) {
-                    rs.setUniqueKey(Integer.parseInt(data));
-
-                } else if (index == 1) {
-                    rs.setDateTime(data);
-
-                } else if (index == 7) {
-                    rs.setLoctype(data);
-
-                } else if (index == 8) {
-                    if (!data.equals("")) {
-                        rs.setZipCode(Integer.parseInt(data));
-                    } else {
-                        rs.setZipCode(0);
-                    }
-
-                } else if (index ==9) {
-                    rs.setAddress(data);
-
-                } else if (index == 16) {
-                    rs.setCity(data);
-
-                } else if (index == 23) {
-                    rs.setBorough(data);
-
-                } else if (index == 49) {
-                    if (!data.equals("")) {
-                        rs.setLat(Double.parseDouble(data));
-                    } else {
-                        rs.setLat(0);
-                    }
-
-                } else if (index == 50) {
-                    if (!data.equals("")) {
-                        rs.setLon(Double.parseDouble(data));
-                    } else {
-                        rs.setLon(0);
-                    }
-
-                }
-
-
-                index++;
-            }
-            index = 0;
-            ratSightingMap.put(rs.getUniqueKey(), rs);
-            Log.d("Current Id", Integer.toString(rs.getUniqueKey()));
-            rs = new RatSighting();
-            lineIndex++;
         }
-
-
-
 
         //close reader
         reader.close();
