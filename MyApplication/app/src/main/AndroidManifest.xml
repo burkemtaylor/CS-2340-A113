@@ -37,6 +37,10 @@
         <activity
             android:name=".controller.ListActivity"
             android:label="@string/title_activity_list"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".controller.RatInfoActivity"
+            android:label="@string/title_activity_rat_info"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

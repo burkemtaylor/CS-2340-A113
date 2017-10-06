@@ -64,4 +64,10 @@ public class ListActivity extends AppCompatActivity {
         Intent intent = new Intent(this, com.example.burketaylor.rattracker.controller.WelcomeActivity.class);
         startActivity(intent);
     }
+
+    public void selected(View view) {
+        Intent intent = new Intent(this, com.example.burketaylor.rattracker.controller.RatInfoActivity.class);
+
+        
+    }
 }
