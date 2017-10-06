@@ -38,6 +38,7 @@ public class RatScanner {
 
 
         RatSighting rs = new RatSighting();
+        int lineIndex = 0;
 
         while ((line = reader.readLine()) != null) {
             //rs stands for rat sighting
@@ -46,7 +47,7 @@ public class RatScanner {
             scanner.useDelimiter(",");
 
 
-            while (scanner.hasNext()) {
+            while (scanner.hasNext() && lineIndex > 0) {
                 String data = scanner.next();
 
                 if (index == 0) {
@@ -85,6 +86,7 @@ public class RatScanner {
             ratSightingMap.put(rs.getUniqueKey(), rs);
             Log.d("Current Id", Integer.toString(rs.getUniqueKey()));
             rs = new RatSighting();
+            lineIndex++;
         }
 
 
