@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import com.example.burketaylor.rattracker.R;
 import com.example.burketaylor.rattracker.model.RatSighting;
@@ -27,7 +28,7 @@ public class ListActivity extends AppCompatActivity {
     ListView listView;
     String[] mobileArray;
     ArrayAdapter adapter;
-
+    ProgressBar scanProgressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,19 +37,12 @@ public class ListActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
 
-
+        scanProgressBar = (ProgressBar) findViewById(R.id.scanProgressBar);
 
 
         listView = (ListView) findViewById(R.id.mobile_list);
 
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
-                setLastSelected((String) listView.getItemAtPosition(position));
-                selected();
-            }
-        });
+        new ScanTask().execute();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -59,7 +53,7 @@ public class ListActivity extends AppCompatActivity {
             }
         });
 
-        new ScanTask().execute();
+
 
 
     }
@@ -83,6 +77,10 @@ public class ListActivity extends AppCompatActivity {
 
     private class ScanTask extends AsyncTask<InputStream, Void, Void> {
 
+        protected void onPreExecute() {
+            scanProgressBar.setVisibility(View.VISIBLE);
+        }
+
         protected Void doInBackground(InputStream... in) {
             try {
                 new RatSightingDatabase(ListActivity.this.getResources().openRawResource(R.raw.rat_sightings));
@@ -94,7 +92,7 @@ public class ListActivity extends AppCompatActivity {
             Object[] ratArray = RatSightingDatabase.getMap().values().toArray();
             mobileArray = new String[RatSightingDatabase.getMap().size()];
             for (int i = 0; i < mobileArray.length; i++) {
-                mobileArray[i] = i + 1 + ". " + ((RatSighting) ratArray[i]).getUniqueKey();
+                mobileArray[i] = ((RatSighting) ratArray[i]).getUniqueKey();
             }
 
 
@@ -103,12 +101,22 @@ public class ListActivity extends AppCompatActivity {
 
 
         protected void onPostExecute(Void v) {
-            Log.d("Check", Boolean.toString(mobileArray == null));
+            scanProgressBar.setVisibility(View.GONE);
+
             adapter = new ArrayAdapter<String>(ListActivity.this,
                     android.R.layout.simple_list_item_1, mobileArray);
 
 
             listView.setAdapter(adapter);
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+                public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
+                    setLastSelected((String) listView.getItemAtPosition(position));
+
+                    selected();
+                }
+            });
+
 
         }
     }
