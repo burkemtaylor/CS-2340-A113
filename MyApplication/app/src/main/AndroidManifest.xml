@@ -41,6 +41,10 @@
         <activity
             android:name=".controller.RatInfoActivity"
             android:label="@string/title_activity_rat_info"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".controller.RatSightingActivity"
+            android:label="@string/title_activity_rat_sighting"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
