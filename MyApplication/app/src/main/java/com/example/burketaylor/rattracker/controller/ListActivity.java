@@ -23,6 +23,7 @@ public class ListActivity extends AppCompatActivity {
 
     ListView listView;
     String[] mobileArray;
+    ArrayAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,13 +72,14 @@ public class ListActivity extends AppCompatActivity {
 
         protected Void doInBackground(InputStream... in) {
             try {
-                new RatSightingDatabase(ListActivity.this.getResources().openRawResource(R.raw.Rat_Sightings));
+                new RatSightingDatabase(ListActivity.this.getResources().openRawResource(R.raw.rat_sightings));
+
             } catch (IOException e) {
                 Log.d("Scan error", e.getLocalizedMessage());
             }
 
             Object[] ratArray = RatSightingDatabase.getMap().values().toArray();
-            String[] mobileArray = new String[RatSightingDatabase.getMap().size()];
+            mobileArray = new String[RatSightingDatabase.getMap().size()];
             for (int i = 0; i < mobileArray.length; i++) {
                 mobileArray[i] = i + 1 + ". " + ((RatSighting) ratArray[i]).getUniqueKey();
             }
@@ -88,7 +90,8 @@ public class ListActivity extends AppCompatActivity {
 
 
         protected void onPostExecute(Void v) {
-            ArrayAdapter adapter = new ArrayAdapter<String>(ListActivity.this,
+            Log.d("Check", Boolean.toString(mobileArray == null));
+            adapter = new ArrayAdapter<String>(ListActivity.this,
                     android.R.layout.simple_list_item_1, mobileArray);
 
 
