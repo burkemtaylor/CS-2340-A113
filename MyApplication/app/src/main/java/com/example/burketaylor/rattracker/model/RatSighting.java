@@ -176,5 +176,12 @@ public class RatSighting{
         longitude = lon;
     }
 
+    @Override
+    public String toString() {
+        return "Key: " + uniquekey + "\nTime Added: " + datetime + "\nLocation Type: "
+                + loctype + "\nZipcode: " + zipcode + "\nAddress: " + address + "\nBorough: " + borough
+                + "\nLatitude: " + latitude + "\nLongitude" + longitude;
+    }
+
 
 }

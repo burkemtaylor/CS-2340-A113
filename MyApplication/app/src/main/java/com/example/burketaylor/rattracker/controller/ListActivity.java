@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -16,6 +17,8 @@ import com.example.burketaylor.rattracker.model.RatSighting;
 import com.example.burketaylor.rattracker.model.RatSightingDatabase;
 
 import java.io.IOException;
+
+import static com.example.burketaylor.rattracker.model.RatSightingDatabase.setLastSelected;
 
 public class ListActivity extends AppCompatActivity {
 
@@ -35,14 +38,22 @@ public class ListActivity extends AppCompatActivity {
         Object[] ratArray = RatSightingDatabase.getMap().values().toArray();
         String[] mobileArray = new String[RatSightingDatabase.getMap().size()];
         for (int i = 0; i < mobileArray.length; i++) {
-            mobileArray[i] = i + 1 + ". " + ((RatSighting) ratArray[i]).getUniqueKey();
+            mobileArray[i] = ((RatSighting) ratArray[i]).getUniqueKey();
         }
 
-        ArrayAdapter adapter = new ArrayAdapter<String>(this,
+        final ArrayAdapter adapter = new ArrayAdapter<String>(this,
                android.R.layout.simple_list_item_1, mobileArray);
 
-        ListView listView = (ListView) findViewById(R.id.mobile_list);
+        final ListView listView = (ListView) findViewById(R.id.mobile_list);
         listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
+                setLastSelected((String) listView.getItemAtPosition(position));
+                selected();
+            }
+        });
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -65,9 +76,9 @@ public class ListActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void selected(View view) {
+    public void selected() {
         Intent intent = new Intent(this, com.example.burketaylor.rattracker.controller.RatInfoActivity.class);
+        startActivity(intent);
 
-        
     }
 }

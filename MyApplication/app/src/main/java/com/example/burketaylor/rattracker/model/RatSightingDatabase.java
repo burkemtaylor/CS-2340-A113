@@ -12,6 +12,7 @@ import java.util.HashMap;
 
 public class RatSightingDatabase {
     private static HashMap<String, RatSighting> ratSightingMap= new HashMap<>();
+    private static String lastSelected = null;
 
     public RatSightingDatabase(InputStream in) throws IOException {
         //try {
@@ -24,5 +25,13 @@ public class RatSightingDatabase {
 
     public static HashMap<String, RatSighting> getMap() {
         return ratSightingMap;
+    }
+
+    public static void setLastSelected(String s) {
+        lastSelected = s;
+    }
+
+    public static String getLastSelected() {
+        return lastSelected;
     }
 }
