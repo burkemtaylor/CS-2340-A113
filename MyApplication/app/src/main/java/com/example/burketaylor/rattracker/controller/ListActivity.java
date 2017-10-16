@@ -67,6 +67,9 @@ public class ListActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /**
+     * Brings user to screen showing details of selected rat sighting
+     */
     public void selected() {
         Intent intent = new Intent(this, com.example.burketaylor.rattracker.controller.RatInfoActivity.class);
         startActivity(intent);
