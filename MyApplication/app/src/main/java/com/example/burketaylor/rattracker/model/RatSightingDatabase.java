@@ -14,6 +14,11 @@ public class RatSightingDatabase {
     private static HashMap<String, RatSighting> ratSightingMap= new HashMap<>();
     private static String lastSelected = null;
 
+    /**
+     * Constructor for Rat Sighting Database
+     * @param in input data stream
+     * @throws IOException if input stream is invalid
+     */
     public RatSightingDatabase(InputStream in) throws IOException {
         //try {
             ratSightingMap = RatScanner.scan(in);
