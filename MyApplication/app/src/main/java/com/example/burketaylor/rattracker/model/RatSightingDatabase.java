@@ -34,4 +34,8 @@ public class RatSightingDatabase {
     public static String getLastSelected() {
         return lastSelected;
     }
+
+    public static boolean isEmpty() {
+        return ratSightingMap.isEmpty();
+    }
 }

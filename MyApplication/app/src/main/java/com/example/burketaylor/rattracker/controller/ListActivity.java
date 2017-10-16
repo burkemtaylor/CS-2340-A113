@@ -42,7 +42,7 @@ public class ListActivity extends AppCompatActivity {
 
         listView = (ListView) findViewById(R.id.mobile_list);
 
-        new ScanTask().execute();
+        new ScanTask().execute(RatSightingDatabase.isEmpty());
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -75,25 +75,29 @@ public class ListActivity extends AppCompatActivity {
 
     }
 
-    private class ScanTask extends AsyncTask<InputStream, Void, Void> {
+    private class ScanTask extends AsyncTask<Boolean, Void, Void> {
 
         protected void onPreExecute() {
             scanProgressBar.setVisibility(View.VISIBLE);
         }
 
-        protected Void doInBackground(InputStream... in) {
-            try {
-                new RatSightingDatabase(ListActivity.this.getResources().openRawResource(R.raw.rat_sightings));
+        protected Void doInBackground(Boolean... in) {
+            boolean notLoaded = in[0];
+            if (notLoaded) {
+                try {
+                    new RatSightingDatabase(ListActivity.this.getResources().openRawResource(R.raw.rat_sightings));
 
-            } catch (IOException e) {
-                Log.d("Scan error", e.getLocalizedMessage());
+                } catch (IOException e) {
+                    Log.d("Scan error", e.getLocalizedMessage());
+                }
             }
 
-            Object[] ratArray = RatSightingDatabase.getMap().values().toArray();
-            mobileArray = new String[RatSightingDatabase.getMap().size()];
-            for (int i = 0; i < mobileArray.length; i++) {
-                mobileArray[i] = ((RatSighting) ratArray[i]).getUniqueKey();
-            }
+                Object[] ratArray = RatSightingDatabase.getMap().values().toArray();
+                mobileArray = new String[RatSightingDatabase.getMap().size()];
+                for (int i = 0; i < mobileArray.length; i++) {
+                    mobileArray[i] = ((RatSighting) ratArray[i]).getUniqueKey();
+                }
+
 
 
             return null;
