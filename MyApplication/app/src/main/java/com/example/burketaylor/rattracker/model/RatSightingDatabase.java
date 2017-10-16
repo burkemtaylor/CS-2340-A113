@@ -11,7 +11,7 @@ import java.util.HashMap;
  */
 
 public class RatSightingDatabase {
-    private static HashMap<String, RatSighting> ratSightingMap= new HashMap<>();
+    private static HashMap<String, RatSighting> ratSightingMap = new HashMap<>();
     private static String lastSelected = null;
 
     /**
