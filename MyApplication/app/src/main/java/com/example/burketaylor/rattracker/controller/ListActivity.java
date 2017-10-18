@@ -70,9 +70,11 @@ public class ListActivity extends AppCompatActivity {
     public void selected() {
         Intent intent = new Intent(this, com.example.burketaylor.rattracker.controller.RatInfoActivity.class);
         startActivity(intent);
+    }
 
-
-
+    public void addSighting(View view) {
+        Intent intent = new Intent(this, com.example.burketaylor.rattracker.controller.AddSightingActivity.class);
+        startActivity(intent);
     }
 
     private class ScanTask extends AsyncTask<Boolean, Void, Void> {
