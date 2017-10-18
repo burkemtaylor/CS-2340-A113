@@ -11,10 +11,15 @@ import java.util.HashMap;
  */
 
 public class RatSightingDatabase {
-    private static HashMap<String, RatSighting> ratSightingMap= new HashMap<>();
+    private static HashMap<String, RatSighting> ratSightingMap = new HashMap<>();
     private static String lastSelected = null;
     public static int nextKey = 50000000;
 
+    /**
+     * Constructor for Rat Sighting Database
+     * @param in input data stream
+     * @throws IOException if input stream is invalid
+     */
     public RatSightingDatabase(InputStream in) throws IOException {
         //try {
             ratSightingMap = RatScanner.scan(in);
@@ -46,5 +51,9 @@ public class RatSightingDatabase {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    public static boolean isEmpty() {
+        return ratSightingMap.isEmpty();
     }
 }

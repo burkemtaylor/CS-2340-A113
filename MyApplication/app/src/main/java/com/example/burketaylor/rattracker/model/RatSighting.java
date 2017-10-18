@@ -42,7 +42,8 @@ public class RatSighting{
     }
 
     /**
-     * returns uniquekey
+     * Returns unique key
+     * @return unique key
      */
     public String getUniqueKey() {
         return uniquekey;
@@ -57,7 +58,8 @@ public class RatSighting{
     }
 
     /**
-     * returns datetime
+     * Returns date and time
+     * @return date time
      */
     public String getDateTime() {
         return datetime;
@@ -72,7 +74,8 @@ public class RatSighting{
     }
 
     /**
-     * returns loctype
+     * Returns location type
+     * @return location type
      */
     public String getLoctype() {
         return loctype;
@@ -87,7 +90,8 @@ public class RatSighting{
     }
 
     /**
-     * returns zipcode
+     * Returns zip code
+     * @return zipcode
      */
     public String getZipCode() {
         return zipcode;
@@ -102,7 +106,8 @@ public class RatSighting{
     }
 
     /**
-     * returns address
+     * Returns address
+     * @return address
      */
     public String getAddress() {
         return address;
@@ -117,7 +122,8 @@ public class RatSighting{
     }
 
     /**
-     * returns city
+     * Returns city name
+     * @return city
      */
     public String getCity() {
         return city;
@@ -132,7 +138,8 @@ public class RatSighting{
     }
 
     /**
-     * returns borough
+     * Returns borough name
+     * @return borough
      */
     public String getBorough() {
         return borough;
@@ -147,7 +154,8 @@ public class RatSighting{
     }
 
     /**
-     * returns latitude
+     * Returns latitude
+     * @return latitude
      */
     public String getLat() {
         return latitude;
@@ -162,7 +170,8 @@ public class RatSighting{
     }
 
     /**
-     * returns longitude
+     * Returns longitude
+     * @return longitude
      */
     public String getLon() {
         return longitude;
