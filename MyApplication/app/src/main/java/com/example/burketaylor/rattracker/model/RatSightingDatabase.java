@@ -13,6 +13,7 @@ import java.util.HashMap;
 public class RatSightingDatabase {
     private static HashMap<String, RatSighting> ratSightingMap= new HashMap<>();
     private static String lastSelected = null;
+    public static int nextKey = 50000000;
 
     public RatSightingDatabase(InputStream in) throws IOException {
         //try {
@@ -33,5 +34,17 @@ public class RatSightingDatabase {
 
     public static String getLastSelected() {
         return lastSelected;
+    }
+
+    public static boolean addRatSighting(RatSighting r) {
+        r.setUniqueKey(Integer.toString(nextKey + 1));
+
+        try {
+            ratSightingMap.put(Integer.toString(nextKey + 1), r);
+            nextKey++;
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

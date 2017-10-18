@@ -45,6 +45,10 @@
         <activity
             android:name=".controller.RatSightingActivity"
             android:label="@string/title_activity_rat_sighting"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".controller.AddSightingActivity"
+            android:label="@string/title_activity_add_sighting"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

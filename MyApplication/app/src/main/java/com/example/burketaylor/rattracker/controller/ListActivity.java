@@ -68,6 +68,15 @@ public class ListActivity extends AppCompatActivity {
     }
 
     /**
+     * Logs user out and returns to welcome screen
+     * @param view current view
+     */
+    public void addsighting(View view) {
+        Intent intent = new Intent(this, com.example.burketaylor.rattracker.controller.AddSightingActivity.class);
+        startActivity(intent);
+    }
+
+    /**
      * Brings user to screen showing details of selected rat sighting
      */
     public void selected() {
@@ -85,19 +94,18 @@ public class ListActivity extends AppCompatActivity {
         }
 
         protected Void doInBackground(InputStream... in) {
-            try {
-                new RatSightingDatabase(ListActivity.this.getResources().openRawResource(R.raw.rat_sightings));
+                try {
+                    new RatSightingDatabase(ListActivity.this.getResources().openRawResource(R.raw.rat_sightings));
 
-            } catch (IOException e) {
-                Log.d("Scan error", e.getLocalizedMessage());
-            }
+                } catch (IOException e) {
+                    Log.d("Scan error", e.getLocalizedMessage());
+                }
 
-            Object[] ratArray = RatSightingDatabase.getMap().values().toArray();
-            mobileArray = new String[RatSightingDatabase.getMap().size()];
-            for (int i = 0; i < mobileArray.length; i++) {
-                mobileArray[i] = ((RatSighting) ratArray[i]).getUniqueKey();
-            }
-
+                Object[] ratArray = RatSightingDatabase.getMap().values().toArray();
+                mobileArray = new String[RatSightingDatabase.getMap().size()];
+                for (int i = 0; i < mobileArray.length; i++) {
+                    mobileArray[i] = ((RatSighting) ratArray[i]).getUniqueKey();
+                }
 
             return null;
         }
@@ -119,8 +127,7 @@ public class ListActivity extends AppCompatActivity {
                     selected();
                 }
             });
-
-
         }
     }
+
 }
