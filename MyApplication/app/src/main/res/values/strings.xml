@@ -110,4 +110,5 @@
     <string name="title_activity_rat_info">RatInfoActivity</string>
     <string name="title_activity_rat_sighting">RatSightingActivity</string>
     <string name="ratInfo" />
+    <string name="title_activity_add_sighting">AddSightingActivity</string>
 </resources>

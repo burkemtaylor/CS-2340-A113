@@ -67,9 +67,6 @@ public class ListActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    /**
-     * Brings user to screen showing details of selected rat sighting
-     */
     public void selected() {
         Intent intent = new Intent(this, com.example.burketaylor.rattracker.controller.RatInfoActivity.class);
         startActivity(intent);
@@ -95,11 +92,11 @@ public class ListActivity extends AppCompatActivity {
                 }
             }
 
-                Object[] ratArray = RatSightingDatabase.getMap().values().toArray();
-                mobileArray = new String[RatSightingDatabase.getMap().size()];
-                for (int i = 0; i < mobileArray.length; i++) {
-                    mobileArray[i] = ((RatSighting) ratArray[i]).getUniqueKey();
-                }
+            Object[] ratArray = RatSightingDatabase.getMap().values().toArray();
+            mobileArray = new String[RatSightingDatabase.getMap().size()];
+            for (int i = 0; i < mobileArray.length; i++) {
+                mobileArray[i] = ((RatSighting) ratArray[i]).getUniqueKey();
+            }
 
 
 
