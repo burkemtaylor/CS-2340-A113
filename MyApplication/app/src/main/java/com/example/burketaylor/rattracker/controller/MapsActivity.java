@@ -2,6 +2,11 @@ package com.example.burketaylor.rattracker.controller;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
+
+import com.example.burketaylor.rattracker.model.RatSighting;
+import com.example.burketaylor.rattracker.model.RatSightingDatabase;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -45,8 +50,40 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
         });
 
+        RatSighting rat = RatSightingDatabase.getMap().get(RatSightingDatabase.getLastSelected());
+        LatLng loc = new LatLng(Double.parseDouble(rat.getLat()),Double.parseDouble(rat.getLon()));
+        mainMap.addMarker(new MarkerOptions().position(loc).title(rat.getUniqueKey()).snippet(rat.getAddress()));
+        mainMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
+
+        mainMap.setInfoWindowAdapter(new CustomInfoWindowAdapter());
 
 
-        
+
     }
+    private class CustomInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
+        private final View myContentsView;
+
+        CustomInfoWindowAdapter(){
+            myContentsView = getLayoutInflater().inflate(R.layout.custom_info_contents, null);
+        }
+
+        @Override
+        public View getInfoContents(Marker marker){
+            TextView tTitle = (TextView) myContentsView.findViewById(R.id.infoTitle);
+            tTitle.setText(marker.getTitle());
+            TextView tSnippet = (TextView) myContentsView.findViewById(R.id.infoSnippet);
+            tSnippet.setText(marker.getSnippet());
+
+            return myContentsView;
+
+
+        }
+
+        @Override
+        public View getInfoWindow(Marker marker){
+            return null;
+        }
+
+    }
+
 }

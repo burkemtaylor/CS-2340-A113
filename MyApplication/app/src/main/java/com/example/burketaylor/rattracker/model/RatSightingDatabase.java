@@ -27,6 +27,8 @@ public class RatSightingDatabase {
         //    ratSightingMap = new HashMap<>(1);
         //    ratSightingMap.put(0, new RatSighting());
         //}
+
+        lastSelected = "31464015";
     }
 
     public static HashMap<String, RatSighting> getMap() {
