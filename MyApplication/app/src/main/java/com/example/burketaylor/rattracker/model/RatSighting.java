@@ -66,6 +66,19 @@ public class RatSighting{
     }
 
     /**
+     * Returns 8-digit numeric value of date (YYYYMMDD)
+     * @return numeric value of date
+     */
+    public int getTimeValue() {
+        String[] arr = datetime.split("/");
+
+        //trim off time details from end of string, leaving only year
+        arr[2] = arr[2].substring(0, 4);
+        String numericDate = (arr[2].concat(arr[0])).concat(arr[1]);
+        return Integer.parseInt(numericDate);
+    }
+
+    /**
      * sets uniquekey to a new key
      * @param dt: new datetime to set datetime to
      */
