@@ -46,19 +46,29 @@
         app:layout_constraintTop_toTopOf="@+id/scanProgressBar"
         tools:layout_constraintBottom_creator="1"
         tools:layout_constraintTop_creator="1"
-        android:layout_marginRight="-5dp"
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="44dp"
-        android:layout_marginStart="44dp"
-        android:onClick="logout"
+        android:layout_marginEnd="8dp"
         android:text="Logout"
-        app:layout_constraintLeft_toRightOf="@+id/scanProgressBar"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@+id/scanProgressBar"
-        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1"
         tools:layout_constraintTop_creator="1" />
+
+    <Button
+        android:id="@+id/map"
+        android:layout_width="73dp"
+        android:layout_height="47dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:text="Map"
+        app:layout_constraintLeft_toRightOf="@+id/scanProgressBar"
+        app:layout_constraintTop_toTopOf="@+id/logout"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_editor_absoluteY="17dp" />
 </android.support.constraint.ConstraintLayout>

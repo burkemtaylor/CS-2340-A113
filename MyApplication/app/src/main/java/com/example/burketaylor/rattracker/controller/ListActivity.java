@@ -67,6 +67,18 @@ public class ListActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /**
+     * Takes user to map view
+     * @param view current view
+     */
+    public void mapView(View view) {
+        Intent intent = new Intent(this, com.example.burketaylor.rattracker.controller.MapsActivity.class);
+        startActivity(intent);
+    }
+
+    /**
+     * Takes user to screen displaying details on selected rat sighting
+     */
     public void selected() {
         Intent intent = new Intent(this, com.example.burketaylor.rattracker.controller.RatInfoActivity.class);
         startActivity(intent);
