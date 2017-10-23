@@ -94,6 +94,7 @@ public class RatSighting{
      */
     public void setDateTime(String dt) {
         datetime = dt;
+        timeValue = calculateTimeValue(datetime);
     }
 
     /**
