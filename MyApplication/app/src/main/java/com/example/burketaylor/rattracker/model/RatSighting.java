@@ -14,6 +14,7 @@ public class RatSighting{
     private String borough;
     private String latitude;
     private String longitude;
+    private int timeValue;
     /**
      * Constructs a user
      * @param key: uniquekey
@@ -36,6 +37,7 @@ public class RatSighting{
         borough = bor;
         latitude = lat;
         longitude = lon;
+        timeValue = calculateTimeValue(dt);
     }
     public RatSighting() {
         this("", "", "", "", "", "", "", "","");
@@ -66,11 +68,33 @@ public class RatSighting{
     }
 
     /**
+     * Returns 8-digit numeric value of date (format: YYYYMMDD)
+     * @return numeric value of date
+     */
+    public static int calculateTimeValue(String date) {
+        String[] arr = date.split("/");
+
+        //trim off time details from end of string, leaving only year
+        arr[2] = arr[2].substring(0, 4);
+        String numericDate = (arr[2].concat(arr[0])).concat(arr[1]);
+        return Integer.parseInt(numericDate);
+    }
+
+    /**
+     * Returns numeric time value
+     * @return time value
+     */
+    public int getTimeValue() {
+        return timeValue;
+    }
+
+    /**
      * sets uniquekey to a new key
      * @param dt: new datetime to set datetime to
      */
     public void setDateTime(String dt) {
         datetime = dt;
+        timeValue = calculateTimeValue(datetime);
     }
 
     /**
