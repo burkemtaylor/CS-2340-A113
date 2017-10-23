@@ -67,12 +67,26 @@ public class ListActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /**
+     * Takes user to map view
+     * @param view current view
+     */
+    public void mapView(View view) {
+        Intent intent = new Intent(this, com.example.burketaylor.rattracker.controller.MapsActivity.class);
+        startActivity(intent);
+    }
+
+    /**
+     * Takes user to screen displaying details on selected rat sighting
+     */
     public void selected() {
         Intent intent = new Intent(this, com.example.burketaylor.rattracker.controller.RatInfoActivity.class);
         startActivity(intent);
+    }
 
-
-
+    public void addSighting(View view) {
+        Intent intent = new Intent(this, com.example.burketaylor.rattracker.controller.AddSightingActivity.class);
+        startActivity(intent);
     }
 
     private class ScanTask extends AsyncTask<Boolean, Void, Void> {
@@ -97,8 +111,6 @@ public class ListActivity extends AppCompatActivity {
             for (int i = 0; i < mobileArray.length; i++) {
                 mobileArray[i] = ((RatSighting) ratArray[i]).getUniqueKey();
             }
-
-
 
             return null;
         }

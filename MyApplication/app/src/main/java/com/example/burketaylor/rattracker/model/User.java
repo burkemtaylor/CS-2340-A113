@@ -1,5 +1,7 @@
 package com.example.burketaylor.rattracker.model;
 
+import java.io.PrintWriter;
+
 /**
  * Created by Neeraj on 9/19/17.
  */
@@ -112,5 +114,18 @@ public class User implements Comparable<User>{
         } else {
             return -1;
         }
+    }
+
+    public void saveAsText(PrintWriter writer) {
+        System.out.println("User saving user: " + userName);
+        writer.println(userName + "\t" + password);
+    }
+
+    public static User parseEntry(String line) {
+        assert line != null;
+        String[] tokens = line.split("\t");
+        assert tokens.length == 2;
+        User u = new User(tokens[0], tokens[1]);
+        return u;
     }
 }

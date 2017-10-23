@@ -1,4 +1,12 @@
 package com.example.burketaylor.rattracker.model;
+import android.util.Log;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 /**
@@ -46,4 +54,76 @@ public class Database {
 
     }
 
+    /**
+     *
+     * @param writer
+     */
+    void saveAsText(PrintWriter writer) {
+        System.out.println("Manager saving: " + userBase.size() + " students" );
+        writer.println(userBase.size());
+        for(User u : userBase) {
+            u.saveAsText(writer);
+        }
+    }
+
+    /**
+     * load the model from a custom text file
+     *
+     * @param reader  the file to read from
+     */
+    void loadFromText(BufferedReader reader) {
+        System.out.println("Loading Text File");
+        //studentMap.clear();
+        userBase.clear();
+        try {
+            String countStr = reader.readLine();
+            assert countStr != null;
+            int count = Integer.parseInt(countStr);
+
+            //then read in each user to model
+            for (int i = 0; i < count; ++i) {
+                String line = reader.readLine();
+                User s = User.parseEntry(line);
+                userBase.add(s);
+                //studentMap.put(s.getName(), s);
+            }
+            //be sure and close the file
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Done loading text file with " + userBase.size() + " students");
+
+    }
+
+    public static ArrayList<User> getUserBase() {
+        return userBase;
+    }
+
+    public boolean loadText(File file) {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(file));
+            this.loadFromText(reader);
+        } catch (FileNotFoundException e) {
+            Log.e("ModelSingleton", "Failed to open file");
+            return false;
+        }
+
+        return true;
+    }
+
+    public boolean saveText(File file) {
+        System.out.println("Saving as a text file");
+        try {
+            PrintWriter pw = new PrintWriter(file);
+            saveAsText(pw);
+            pw.close();
+        } catch(FileNotFoundException e) {
+            e.printStackTrace();
+            Log.d("Database", "Error opening the text file for save!");
+            return false;
+        }
+
+        return true;
+    }
 }
