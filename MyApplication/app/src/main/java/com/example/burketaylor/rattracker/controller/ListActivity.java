@@ -112,8 +112,6 @@ public class ListActivity extends AppCompatActivity {
                 mobileArray[i] = ((RatSighting) ratArray[i]).getUniqueKey();
             }
 
-
-
             return null;
         }
 
