@@ -31,6 +31,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -197,6 +198,11 @@ public class RegistrationActivity extends AppCompatActivity implements LoaderCal
             Database.addUser(new User(email, password));
             Intent intent = new Intent(this, ListActivity.class);
             intent.putExtra("user", email);
+
+            File file = new File(this.getFilesDir(), String.valueOf(R.raw.user_list));
+            Database users = new Database();
+            users.saveText(file);
+
             startActivity(intent);
         } else {
             mEmailView.setError("Username or Password invalid.");

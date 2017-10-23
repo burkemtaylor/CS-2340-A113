@@ -9,6 +9,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.example.burketaylor.rattracker.R;
+import com.example.burketaylor.rattracker.model.Database;
+
+import java.io.File;
 
 public class WelcomeActivity extends AppCompatActivity {
 
@@ -27,6 +30,10 @@ public class WelcomeActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        Database users = new Database();
+        File file = new File(this.getFilesDir(), String.valueOf(R.raw.user_list));
+        users.loadText(file);
     }
 
     /**
