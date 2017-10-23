@@ -2,6 +2,7 @@ package com.example.burketaylor.rattracker.controller;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -53,7 +54,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         RatSighting rat = RatSightingDatabase.getMap().get(RatSightingDatabase.getLastSelected());
         LatLng loc = new LatLng(Double.parseDouble(rat.getLat()),Double.parseDouble(rat.getLon()));
         mainMap.addMarker(new MarkerOptions().position(loc).title(rat.getUniqueKey()).snippet(rat.getAddress()));
+
         mainMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
+        mainMap.moveCamera(CameraUpdateFactory.zoomTo(15.0f));
 
         mainMap.setInfoWindowAdapter(new CustomInfoWindowAdapter());
 
