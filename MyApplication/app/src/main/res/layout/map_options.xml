@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerHorizontal="false"
+    android:layout_centerInParent="false"
+    android:layout_centerVertical="false"
+    android:layout_gravity="top|center"
+    android:background="@drawable/shape"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingRight="20dp"
+    android:paddingTop="10dp"
+    app:layout_anchorGravity="center">
+
+
+    <RadioGroup
+        android:id="@+id/optionRadioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:checkedButton="@+id/shownByNum">
+
+        <RadioButton
+            android:id="@+id/shownByNum"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:checked="false"
+            android:onClick="onOptionRadioButtonClicked"
+            android:text="Show Recent Reports"
+            android:textColorLink="@color/colorPrimary" />
+
+        <RadioButton
+            android:id="@+id/shownByDate"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:onClick="onOptionRadioButtonClicked"
+            android:text="Select Date Range"
+            android:textColorLink="@color/colorPrimary" />
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/rangeText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Show Last:" />
+
+    <Spinner
+        android:id="@+id/numRangeSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="visible" />
+
+    <TextView
+        android:id="@+id/startDateView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Start Date:" />
+
+    <DatePicker
+        android:id="@+id/startDatePicker"
+        android:layout_width="wrap_content"
+        android:layout_height="175dp"
+        android:calendarViewShown="false"
+        android:datePickerMode="spinner"
+        android:scaleX=".7"
+        android:scaleY=".7" />
+
+    <TextView
+        android:id="@+id/endDateView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="End Date:" />
+
+    <DatePicker
+        android:id="@+id/endDatePicker"
+        android:layout_width="wrap_content"
+        android:layout_height="175dp"
+        android:calendarViewShown="false"
+        android:datePickerMode="spinner"
+        android:scaleX=".7"
+        android:scaleY=".7" />
+
+    <Button
+        android:id="@+id/optionsConfirmButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:onClick="optionConfirm"
+        android:text="Confirm" />
+
+</LinearLayout>

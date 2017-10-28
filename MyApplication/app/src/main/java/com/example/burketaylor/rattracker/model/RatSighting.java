@@ -1,10 +1,13 @@
 package com.example.burketaylor.rattracker.model;
 
+import android.support.annotation.NonNull;
+import android.util.Log;
+
 /**
  * Created by Ankit on 10/3/17.
  */
 
-public class RatSighting{
+public class RatSighting implements Comparable<RatSighting>{
     private String uniquekey;
     private String datetime;
     private String loctype;
@@ -71,22 +74,27 @@ public class RatSighting{
      * Returns 8-digit numeric value of date (format: YYYYMMDD)
      * @return numeric value of date
      */
-    /*public static int calculateTimeValue(String date) {
-        String[] arr = date.split("/");
+    private int calculateTimeValue(String date) {
+        try {
+            String[] arr = date.split("/");
 
-        //trim off time details from end of string, leaving only year
-        arr[2] = arr[2].substring(0, 4);
-        String numericDate = (arr[2].concat(arr[0])).concat(arr[1]);
-        return Integer.parseInt(numericDate);
-    }*/
+            //trim off time details from end of string, leaving only year
+            arr[2] = arr[2].substring(0, 4);
+            String numericDate = (arr[2].concat(arr[0])).concat(arr[1]);
+            return Integer.parseInt(numericDate);
+        } catch (Exception e){
+            Log.d("RatSightingTimeError", e.getStackTrace().toString());
+        }
+        return 0;
+    }
 
     /**
      * Returns numeric time value
      * @return time value
      */
-    /*public int getTimeValue() {
-        return timeValue;
-    }*/
+    public int getTimeValue() {
+        return calculateTimeValue(datetime);
+    }
 
     /**
      * sets uniquekey to a new key
@@ -207,6 +215,13 @@ public class RatSighting{
      */
     public void setLon(String lon) {
         longitude = lon;
+    }
+
+
+    @Override
+    public int compareTo(@NonNull RatSighting other) {
+
+        return Integer.compare(this.calculateTimeValue(datetime), other.calculateTimeValue(other.getDateTime()));
     }
 
     @Override
