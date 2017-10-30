@@ -51,7 +51,7 @@ public class ListActivity extends AppCompatActivity {
         rsf.loadBinary(file);
         Log.d("LOADING", String.valueOf(RatSightingDatabase.getMap().size()));
 
-        new ScanTask().execute(RatSightingDatabase.isEmpty() && file.length() > 5);
+        new ScanTask().execute(RatSightingDatabase.isEmpty() && file.length() <= 5);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
