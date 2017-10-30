@@ -13,7 +13,9 @@ import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.PrintWriter;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Stores the Rat Sightings already reported in a hashmap
@@ -21,6 +23,7 @@ import java.util.HashMap;
  */
 
 public class RatSightingDatabase implements Serializable {
+    private static List<RatSighting> rsList = new ArrayList<>();
     private static HashMap<String, RatSighting> ratSightingMap = new HashMap<>();
     private static String lastSelected = null;
     public static int nextKey = 50000000;
@@ -143,14 +146,15 @@ public class RatSightingDatabase implements Serializable {
         return true;
     }*/
 
-    void regenMap(HashMap<String, RatSighting> m) {
-        /*if (ratSightingMap != null) {
+    void regenMap() {
+        if (ratSightingMap != null) {
             ratSightingMap.clear();
         } else {
             ratSightingMap = new HashMap<String, RatSighting>();
-        }*/
-
-        ratSightingMap = m;
+        }
+        for (RatSighting r : rsList)
+            ratSightingMap.put(r.getUniqueKey(), r);
+            Log.d("regen", "REGEN");
     }
 
 }

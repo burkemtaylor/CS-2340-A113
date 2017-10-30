@@ -1,5 +1,7 @@
 package com.example.burketaylor.rattracker.model;
 
+import android.util.Log;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -23,9 +25,11 @@ public class RatSightingFacade {
         try {
             ObjectInputStream in = new ObjectInputStream(new FileInputStream(file));
             rsd = (RatSightingDatabase) in.readObject();
-            /*if (rsd.getMap() != null) {
-                rsd.regenMap(rsd.getMap());
-            }*/
+            Log.d("read", "READ");
+            if (rsd != null) {
+                rsd.regenMap();
+                Log.d("notNULL", "notNULL");
+            }
             in.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -44,6 +48,7 @@ public class RatSightingFacade {
         try {
             ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file));
             out.writeObject(rsd);
+            Log.d("write", "WRITE");
             out.close();
         } catch (IOException e) {
             e.printStackTrace();

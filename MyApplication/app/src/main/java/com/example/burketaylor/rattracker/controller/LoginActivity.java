@@ -191,10 +191,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             Intent intent = new Intent(this, ListActivity.class);
             intent.putExtra("user", username);
 
-            RatSightingFacade rsf = RatSightingFacade.getInstance();
+            /*RatSightingFacade rsf = RatSightingFacade.getInstance();
             File file = new File(this.getFilesDir(), RatSightingFacade.DEFAULT_BINARY_FILE_NAME);
             Log.d(String.valueOf(file.exists()), String.valueOf(file.canRead()));
-            rsf.loadBinary(file);
+            rsf.loadBinary(file);*/
             Log.d("LOADING", "LOADING");
 
             startActivity(intent);

@@ -45,13 +45,13 @@ public class ListActivity extends AppCompatActivity {
 
         listView = (ListView) findViewById(R.id.mobile_list);
 
-        //RatSightingFacade rsf = RatSightingFacade.getInstance();
-        //File file = new File(this.getFilesDir(), RatSightingFacade.DEFAULT_BINARY_FILE_NAME);
-        //Log.d(String.valueOf(file.exists()), String.valueOf(file.canRead()));
-        //rsf.loadBinary(file);
-        Log.d("LOADING", "LOADING");
+        RatSightingFacade rsf = RatSightingFacade.getInstance();
+        File file = new File(this.getFilesDir(), RatSightingFacade.DEFAULT_BINARY_FILE_NAME);
+        Log.d(String.valueOf(file.exists()), String.valueOf(file.canRead()));
+        rsf.loadBinary(file);
+        Log.d("LOADING", String.valueOf(RatSightingDatabase.getMap().size()));
 
-        new ScanTask().execute(RatSightingDatabase.isEmpty());
+        new ScanTask().execute(RatSightingDatabase.isEmpty() && file.length() > 5);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -106,13 +106,13 @@ public class ListActivity extends AppCompatActivity {
 
         protected Void doInBackground(Boolean... in) {
             boolean notLoaded = in[0];
-            if (notLoaded) {
+            /*if (notLoaded) {
                 try {
                     new RatSightingDatabase(ListActivity.this.getResources().openRawResource(R.raw.rat_sightings));
                 } catch (IOException e) {
                     Log.d("Scan error", e.getLocalizedMessage());
                 }
-            }
+            }*/
 
             Object[] ratArray = RatSightingDatabase.getMap().values().toArray();
             mobileArray = new String[RatSightingDatabase.getMap().size()];

@@ -68,7 +68,7 @@ public class AddSightingActivity extends AppCompatActivity {
         File file = new File(this.getFilesDir(), RatSightingFacade.DEFAULT_BINARY_FILE_NAME);
         Log.d(String.valueOf(file.exists()), String.valueOf(file.canRead()));
         rsf.saveBinary(file);
-        Log.d("SAVING", "SAVING");
+        Log.d("SAVING", String.valueOf(file.length()));
 
         Intent intent = new Intent(this, com.example.burketaylor.rattracker.controller.ListActivity.class);
         startActivity(intent);
