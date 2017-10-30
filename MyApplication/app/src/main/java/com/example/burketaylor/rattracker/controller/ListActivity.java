@@ -15,9 +15,12 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 
 import com.example.burketaylor.rattracker.R;
+import com.example.burketaylor.rattracker.model.Database;
 import com.example.burketaylor.rattracker.model.RatSighting;
 import com.example.burketaylor.rattracker.model.RatSightingDatabase;
+import com.example.burketaylor.rattracker.model.RatSightingFacade;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -41,6 +44,12 @@ public class ListActivity extends AppCompatActivity {
 
 
         listView = (ListView) findViewById(R.id.mobile_list);
+
+        //RatSightingFacade rsf = RatSightingFacade.getInstance();
+        //File file = new File(this.getFilesDir(), RatSightingFacade.DEFAULT_BINARY_FILE_NAME);
+        //Log.d(String.valueOf(file.exists()), String.valueOf(file.canRead()));
+        //rsf.loadBinary(file);
+        Log.d("LOADING", "LOADING");
 
         new ScanTask().execute(RatSightingDatabase.isEmpty());
 
@@ -100,7 +109,6 @@ public class ListActivity extends AppCompatActivity {
             if (notLoaded) {
                 try {
                     new RatSightingDatabase(ListActivity.this.getResources().openRawResource(R.raw.rat_sightings));
-
                 } catch (IOException e) {
                     Log.d("Scan error", e.getLocalizedMessage());
                 }

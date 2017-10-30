@@ -10,6 +10,7 @@ import android.view.View;
 
 import com.example.burketaylor.rattracker.R;
 import com.example.burketaylor.rattracker.model.Database;
+import com.example.burketaylor.rattracker.model.RatSightingDatabase;
 
 import java.io.File;
 

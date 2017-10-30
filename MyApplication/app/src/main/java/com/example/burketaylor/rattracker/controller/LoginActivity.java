@@ -20,6 +20,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -32,8 +33,10 @@ import android.widget.TextView;
 
 import com.example.burketaylor.rattracker.R;
 import com.example.burketaylor.rattracker.model.Database;
+import com.example.burketaylor.rattracker.model.RatSightingFacade;
 import com.example.burketaylor.rattracker.model.User;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -187,6 +190,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             String username = mEmailView.getText().toString();
             Intent intent = new Intent(this, ListActivity.class);
             intent.putExtra("user", username);
+
+            RatSightingFacade rsf = RatSightingFacade.getInstance();
+            File file = new File(this.getFilesDir(), RatSightingFacade.DEFAULT_BINARY_FILE_NAME);
+            Log.d(String.valueOf(file.exists()), String.valueOf(file.canRead()));
+            rsf.loadBinary(file);
+            Log.d("LOADING", "LOADING");
+
             startActivity(intent);
         } else {
             mEmailView.setError("Username or Password invalid.");

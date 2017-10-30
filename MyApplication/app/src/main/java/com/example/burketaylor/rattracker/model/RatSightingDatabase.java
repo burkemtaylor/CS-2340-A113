@@ -1,8 +1,18 @@
 package com.example.burketaylor.rattracker.model;
 
+import android.util.Log;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.PrintWriter;
+import java.io.Serializable;
 import java.util.HashMap;
 
 /**
@@ -10,7 +20,7 @@ import java.util.HashMap;
  * Created by burketaylor on 10/3/17.
  */
 
-public class RatSightingDatabase {
+public class RatSightingDatabase implements Serializable {
     private static HashMap<String, RatSighting> ratSightingMap = new HashMap<>();
     private static String lastSelected = null;
     public static int nextKey = 50000000;
@@ -29,6 +39,10 @@ public class RatSightingDatabase {
         //}
 
         lastSelected = "31464015";
+    }
+
+    public RatSightingDatabase() {
+        ratSightingMap = ratSightingMap;
     }
 
     public static HashMap<String, RatSighting> getMap() {
@@ -58,4 +72,85 @@ public class RatSightingDatabase {
     public static boolean isEmpty() {
         return ratSightingMap.isEmpty();
     }
+
+    /*/**
+     *
+     * @param writer
+     */
+    /*void saveAsText(PrintWriter writer) {
+        System.out.println("RSDatabase saving: " + ratSightingMap.size() + " sightings" );
+        writer.println(ratSightingMap.values().toArray().length);
+
+        for(Object r : ratSightingMap.values().toArray()) {
+            ((RatSighting) r).saveAsText(writer);
+        }
+    }
+
+    /**
+     * load the model from a custom text file
+     *
+     * @param reader  the file to read from
+     */
+    /*void loadFromText(BufferedReader reader) {
+        System.out.println("Loading Text File");
+        //studentMap.clear();
+        ratSightingMap.clear();
+        try {
+            String countStr = reader.readLine();
+            assert countStr != null;
+            int count = Integer.parseInt(countStr);
+
+            //then read in each user to model
+            for (int i = 0; i < count; ++i) {
+                String line = reader.readLine();
+                RatSighting r = RatSighting.parseEntry(line);
+                ratSightingMap.put(r.getUniqueKey(), r);
+                //studentMap.put(s.getName(), s);
+            }
+            //be sure and close the file
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Done loading text file with " + ratSightingMap.size() + " sightings");
+
+    }
+
+    public boolean loadText(File file) {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(file));
+            this.loadFromText(reader);
+        } catch (FileNotFoundException e) {
+            Log.e("ModelSingleton", "Failed to open file");
+            return false;
+        }
+
+        return true;
+    }
+
+    public boolean saveText(File file) {
+        System.out.println("Saving as a text file");
+        try {
+            PrintWriter pw = new PrintWriter(file);
+            saveAsText(pw);
+            pw.close();
+        } catch(FileNotFoundException e) {
+            e.printStackTrace();
+            Log.d("Database", "Error opening the text file for save!");
+            return false;
+        }
+
+        return true;
+    }*/
+
+    void regenMap(HashMap<String, RatSighting> m) {
+        /*if (ratSightingMap != null) {
+            ratSightingMap.clear();
+        } else {
+            ratSightingMap = new HashMap<String, RatSighting>();
+        }*/
+
+        ratSightingMap = m;
+    }
+
 }

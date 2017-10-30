@@ -3,11 +3,14 @@ package com.example.burketaylor.rattracker.model;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import java.io.PrintWriter;
+import java.io.Serializable;
+
 /**
  * Created by Ankit on 10/3/17.
  */
 
-public class RatSighting implements Comparable<RatSighting>{
+public class RatSighting implements Comparable<RatSighting>, Serializable {
     private String uniquekey;
     private String datetime;
     private String loctype;
@@ -231,7 +234,20 @@ public class RatSighting implements Comparable<RatSighting>{
                 + "\nLatitude: " + latitude + "\nLongitude" + longitude;
     }
 
+    /*public void saveAsText(PrintWriter writer) {
+        System.out.println("RatSighting saving sighting: " + uniquekey);
+        writer.println(uniquekey + "\t" + datetime + "\t" + loctype + "\t" + zipcode + "\t" + address
+            + "\t" + city + "\t" + borough + "\t" + latitude + "\t" + longitude);
+    }
 
+    public static RatSighting parseEntry(String line) {
+        assert line != null;
+        String[] tokens = line.split("\t");
+        assert tokens.length == 9;
+        RatSighting r = new RatSighting(tokens[0], tokens[1], tokens[2], tokens[3], tokens[4],
+                tokens[5], tokens[6], tokens[7], tokens[8]);
+        return r;
+    }*/
 
 
 }
