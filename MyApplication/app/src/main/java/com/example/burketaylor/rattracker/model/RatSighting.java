@@ -3,6 +3,10 @@ package com.example.burketaylor.rattracker.model;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 /**
  * Created by Ankit on 10/3/17.
  */
@@ -84,8 +88,13 @@ public class RatSighting implements Comparable<RatSighting>{
             return Integer.parseInt(numericDate);
         } catch (Exception e){
             Log.d("RatSightingTimeError", e.getStackTrace().toString());
+            DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+            int dateInt = Integer.parseInt(dateFormat.format(Calendar.getInstance()));
+            Log.d("FixedSightingError", Integer.toString(dateInt));
+            return dateInt;
+
         }
-        return 0;
+
     }
 
     /**
