@@ -106,13 +106,13 @@ public class ListActivity extends AppCompatActivity {
 
         protected Void doInBackground(Boolean... in) {
             boolean notLoaded = in[0];
-            /*if (notLoaded) {
+            if (notLoaded) {
                 try {
                     new RatSightingDatabase(ListActivity.this.getResources().openRawResource(R.raw.rat_sightings));
                 } catch (IOException e) {
                     Log.d("Scan error", e.getLocalizedMessage());
                 }
-            }*/
+            }
 
             Object[] ratArray = RatSightingDatabase.getMap().values().toArray();
             mobileArray = new String[RatSightingDatabase.getMap().size()];
