@@ -14,6 +14,7 @@ import java.io.ObjectInputStream;
 import java.io.PrintWriter;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -23,10 +24,12 @@ import java.util.List;
  */
 
 public class RatSightingDatabase implements Serializable {
-    private static List<RatSighting> rsList = new ArrayList<>();
+    private List<RatSighting> rsList = new ArrayList<>();
     private static HashMap<String, RatSighting> ratSightingMap = new HashMap<>();
     private static String lastSelected = null;
     public static int nextKey = 50000000;
+
+    private static RatSightingDatabase instance = new RatSightingDatabase();
 
     /**
      * Constructor for Rat Sighting Database
@@ -36,6 +39,9 @@ public class RatSightingDatabase implements Serializable {
     public RatSightingDatabase(InputStream in) throws IOException {
         //try {
             ratSightingMap = RatScanner.scan(in);
+            Log.d("finished", "scanning");
+            //rsList = Arrays.asList((RatSighting[]) ratSightingMap.values().toArray());
+            Log.d("list", "populated");
         //} catch (IOException e) {
         //    ratSightingMap = new HashMap<>(1);
         //    ratSightingMap.put(0, new RatSighting());
@@ -46,6 +52,12 @@ public class RatSightingDatabase implements Serializable {
 
     public RatSightingDatabase() {
         ratSightingMap = ratSightingMap;
+        rsList = rsList;
+    }
+
+    public RatSightingDatabase(RatSightingDatabase instance) {
+        ratSightingMap = instance.getMap();
+        rsList = instance.getList();
     }
 
     public static HashMap<String, RatSighting> getMap() {
@@ -60,16 +72,25 @@ public class RatSightingDatabase implements Serializable {
         return lastSelected;
     }
 
-    public static boolean addRatSighting(RatSighting r) {
+    public boolean addRatSighting(RatSighting r) {
         r.setUniqueKey(Integer.toString(nextKey + 1));
 
         try {
             ratSightingMap.put(Integer.toString(nextKey + 1), r);
+            rsList.add(r);
             nextKey++;
             return true;
         } catch (Exception e) {
             return false;
         }
+    }
+
+    public void addToList(RatSighting r) {
+        rsList.add(r);
+    }
+
+    public List getList() {
+        return rsList;
     }
 
     public static boolean isEmpty() {
@@ -157,4 +178,7 @@ public class RatSightingDatabase implements Serializable {
             Log.d("regen", "REGEN");
     }
 
+    public static RatSightingDatabase getInstance() {
+        return instance;
+    }
 }

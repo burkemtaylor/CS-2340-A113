@@ -55,19 +55,24 @@ public class AddSightingActivity extends AppCompatActivity {
         EditText latitude = (EditText) findViewById(R.id.latitude);
         EditText longitude = (EditText) findViewById(R.id.longitude);
 
+        RatSightingDatabase rsd = RatSightingDatabase.getInstance();
+
 
         //if () {
         RatSighting newRatSighting = new RatSighting("0", dateTime.getText().toString(), locationType.getText().toString(),
                 zipcode.getText().toString(), address.getText().toString(), city.getText().toString(), borough.getText().toString(),
                 latitude.getText().toString(), longitude.getText().toString());
 
-        RatSightingDatabase.addRatSighting(newRatSighting);
+        rsd.addRatSighting(newRatSighting);
+        RatSightingDatabase thing = new RatSightingDatabase(rsd);
 
         RatSightingFacade rsf = RatSightingFacade.getInstance();
 
         File file = new File(this.getFilesDir(), RatSightingFacade.DEFAULT_BINARY_FILE_NAME);
         Log.d(String.valueOf(file.exists()), String.valueOf(file.canRead()));
         rsf.saveBinary(file);
+        Log.d("RSD", String.valueOf(rsd.getList().size()));
+        Log.d("THING", String.valueOf(rsd.getList().size()));
         Log.d("SAVING", String.valueOf(file.length()));
 
         Intent intent = new Intent(this, com.example.burketaylor.rattracker.controller.ListActivity.class);

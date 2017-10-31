@@ -190,13 +190,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             String username = mEmailView.getText().toString();
             Intent intent = new Intent(this, ListActivity.class);
             intent.putExtra("user", username);
-
-            /*RatSightingFacade rsf = RatSightingFacade.getInstance();
-            File file = new File(this.getFilesDir(), RatSightingFacade.DEFAULT_BINARY_FILE_NAME);
-            Log.d(String.valueOf(file.exists()), String.valueOf(file.canRead()));
-            rsf.loadBinary(file);*/
-            Log.d("LOADING", "LOADING");
-
             startActivity(intent);
         } else {
             mEmailView.setError("Username or Password invalid.");

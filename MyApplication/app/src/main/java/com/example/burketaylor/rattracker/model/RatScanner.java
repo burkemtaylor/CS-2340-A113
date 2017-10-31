@@ -15,6 +15,8 @@ import java.io.InputStreamReader;
 import java.util.Scanner;
 import java.util.HashMap;
 
+import static com.example.burketaylor.rattracker.model.RatSightingDatabase.*;
+
 public class RatScanner {
 
 
@@ -45,6 +47,7 @@ public class RatScanner {
                 rs = new RatSighting(tokens[0], tokens[1], tokens[7], tokens[8], tokens[9],
                         tokens[16], tokens[23], tokens[49], tokens[50]);
                 ratSightingMap.put(rs.getUniqueKey(), rs);
+                //addToList(rs);
                 Log.d("Current Id", rs.getUniqueKey());
             } else {
                 lineIndex++;

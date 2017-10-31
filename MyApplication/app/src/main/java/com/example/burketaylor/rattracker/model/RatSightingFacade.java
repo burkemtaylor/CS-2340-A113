@@ -15,7 +15,7 @@ import java.io.ObjectOutputStream;
 
 public class RatSightingFacade {
     private RatSightingDatabase rsd;
-    public final static String DEFAULT_BINARY_FILE_NAME = "new_rat_sightings.bin";
+    public final static String DEFAULT_BINARY_FILE_NAME = "data.bin";
 
     private static RatSightingFacade instance = new RatSightingFacade();
 
