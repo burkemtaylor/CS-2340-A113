@@ -1,10 +1,21 @@
 package com.example.burketaylor.rattracker.controller;
 
+import android.graphics.drawable.ColorDrawable;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
+import android.widget.PopupWindow;
+import android.widget.ProgressBar;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.example.burketaylor.rattracker.model.GraphData;
+import com.example.burketaylor.rattracker.model.GraphDataManager;
 import com.example.burketaylor.rattracker.model.RatSighting;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
@@ -19,6 +30,15 @@ import com.example.burketaylor.rattracker.R;
 
 public class GraphActivity extends AppCompatActivity {
 
+    private PopupWindow optionsWindow;
+    private TextView startDateText;
+    private TextView endDateText;
+    private DatePicker startPicker;
+    private DatePicker endPicker;
+
+    private int start = 20160100;
+    private int end = 20161200;
+
     private GraphData data = new GraphData();
 
     @Override
@@ -28,9 +48,9 @@ public class GraphActivity extends AppCompatActivity {
 
         LineChart lineChart = (LineChart) findViewById(R.id.chart);
 
-        //generate graph data
+        GraphDataManager.generateGraphData(start, end);
 
-        List<Entry> entries = convertDataSetToEntry(data.getDataList());
+        List<Entry> entries = convertDataSetToEntry(GraphDataManager.getDataList());
 
         LineDataSet dataset = new LineDataSet(entries, "# of Calls");
 
@@ -44,17 +64,109 @@ public class GraphActivity extends AppCompatActivity {
         lineChart.setData(data);
         lineChart.animateY(5000);
 
-        lineChart.getDescription().setText("Average Calls per Month");
+        lineChart.getDescription().setText("Rat Sightings per Month");
 
     }
 
     private List<Entry> convertDataSetToEntry(List<GraphData> data) {
         List<Entry> entries = new ArrayList<>();
 
-        for (RatSighting d : data) {
-            entries.add(new Entry(d.x, d.y));
+        for (GraphData d : data) {
+            entries.add(new Entry(d.getMonthYear(), d.getSightings()));
         }
 
         return entries;
+    }
+
+    public void showOptions(View view){
+        View optionsView = getLayoutInflater().inflate(R.layout.map_options, null);
+
+        optionsWindow = new PopupWindow(optionsView, ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
+        optionsWindow.setFocusable(true);
+        optionsWindow.setBackgroundDrawable(new ColorDrawable());
+        //numRangeSpinner = (Spinner) optionsView.findViewById(R.id.numRangeSpinner);
+
+        /*ArrayAdapter<Integer> adapter = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item, SPINNER_RANGE);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        numRangeSpinner.setAdapter(adapter);*/
+
+        startDateText = (TextView) optionsView.findViewById(R.id.startDateView);
+        endDateText = (TextView) optionsView.findViewById(R.id.endDateView);
+        //rangeText = (TextView) optionsView.findViewById(R.id.rangeText);
+        startPicker = (DatePicker)optionsView.findViewById(R.id.startDatePicker);
+        endPicker = (DatePicker) optionsView.findViewById(R.id.endDatePicker);
+
+        startDateText.setVisibility(View.VISIBLE);
+        endDateText.setVisibility(View.VISIBLE);
+        startPicker.setVisibility(View.VISIBLE);
+        endPicker.setVisibility(View.VISIBLE);
+        optionsView.findViewById(R.id.optionRadioGroup).setVisibility(View.GONE);
+        optionsView.findViewById(R.id.rangeText).setVisibility(View.GONE);
+        optionsView.findViewById(R.id.numRangeSpinner).setVisibility(View.GONE);
+        optionsWindow.showAsDropDown(view);
+    }
+
+    public void optionConfirm(View view) {
+        int dayS = startPicker.getDayOfMonth();
+        String daySString;
+        if (dayS < 10){
+            daySString = "0"+Integer.toString(dayS);
+        } else {
+            daySString = Integer.toString(dayS);
+        }
+        int monthS = startPicker.getMonth();
+        String monthSString;
+        if (monthS < 10){
+            monthSString = "0"+Integer.toString(monthS);
+        } else {
+            monthSString = Integer.toString(monthS);
+        }
+        String startDateString = Integer.toString(startPicker.getYear()) + monthSString + daySString;
+
+        int dayE = endPicker.getDayOfMonth();
+        String dayEString;
+        if (dayE < 10){
+            dayEString = "0"+Integer.toString(dayE);
+        } else {
+            dayEString = Integer.toString(dayE);
+        }
+        int monthE = endPicker.getMonth();
+        String monthEString;
+        if (monthE < 10){
+            monthEString = "0"+Integer.toString(monthE);
+        } else {
+            monthEString = Integer.toString(monthE);
+        }
+        String endDateString = Integer.toString(endPicker.getYear()) + monthEString + dayEString;
+        Log.d("startdate", startDateString);
+        Log.d("enddate", endDateString);
+
+        start = (Integer.parseInt(startDateString) / 100) * 100;
+        end = (Integer.parseInt(endDateString) / 100) * 100;
+
+        LineChart lineChart = (LineChart) findViewById(R.id.chart);
+
+        lineChart.clear();
+        GraphDataManager.clear();
+
+        GraphDataManager.generateGraphData(start, end);
+
+        List<Entry> entries = convertDataSetToEntry(GraphDataManager.getDataList());
+
+        LineDataSet dataset = new LineDataSet(entries, "# of Calls");
+
+        Log.d("APP", "Made dataset with : " + entries.size());
+
+        LineData data = new LineData(dataset);
+        dataset.setColors(ColorTemplate.COLORFUL_COLORS); //
+
+        dataset.setDrawFilled(true);
+
+        lineChart.setData(data);
+        lineChart.animateY(5000);
+
+        lineChart.getDescription().setText("Rat Sightings per Month");
+
+        optionsWindow.dismiss();
     }
 }

@@ -1,5 +1,7 @@
 package com.example.burketaylor.rattracker.model;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -36,6 +38,7 @@ public class MapEntryManager {
                 if (date >= startDate & date <= endDate) {
                     out.add(sighting);
                 }
+                Log.d("FINDING", "RANGE YUH");
             }
             lastDateEntries = out;
             lastStartDate = startDate;
