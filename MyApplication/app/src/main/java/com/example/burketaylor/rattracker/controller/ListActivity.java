@@ -45,13 +45,13 @@ public class ListActivity extends AppCompatActivity {
 
         listView = (ListView) findViewById(R.id.mobile_list);
 
-        RatSightingFacade rsf = RatSightingFacade.getInstance();
+        /*RatSightingFacade rsf = RatSightingFacade.getInstance();
         File file = new File(this.getFilesDir(), RatSightingFacade.DEFAULT_BINARY_FILE_NAME);
         Log.d(String.valueOf(file.exists()), String.valueOf(file.canRead()));
         rsf.loadBinary(file);
-        Log.d("LOADING", String.valueOf(RatSightingDatabase.getMap().size()));
+        Log.d("LOADING", String.valueOf(RatSightingDatabase.getMap().size()));*/
 
-        new ScanTask().execute(RatSightingDatabase.isEmpty() && file.length() <= 5);
+        new ScanTask().execute(RatSightingDatabase.isEmpty());
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

@@ -3,6 +3,7 @@ package com.example.burketaylor.rattracker.model;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -93,7 +94,6 @@ public class RatSighting implements Comparable<RatSighting>, Serializable {
             int dateInt = Integer.parseInt(dateFormat.format(Calendar.getInstance()));
             Log.d("FixedSightingError", Integer.toString(dateInt));
             return dateInt;
-
         }
 
     }
@@ -241,20 +241,19 @@ public class RatSighting implements Comparable<RatSighting>, Serializable {
                 + "\nLatitude: " + latitude + "\nLongitude" + longitude;
     }
 
-    /*public void saveAsText(PrintWriter writer) {
+    public void saveAsText(PrintWriter writer) {
         System.out.println("RatSighting saving sighting: " + uniquekey);
-        writer.println(uniquekey + "\t" + datetime + "\t" + loctype + "\t" + zipcode + "\t" + address
-            + "\t" + city + "\t" + borough + "\t" + latitude + "\t" + longitude);
+        writer.println(uniquekey + "," + datetime + ",,,,,," + loctype + "," + zipcode + "," + address + ",,,,,,," + city + ",,,,,,," + borough + ",,,,,,,,,,,,,,,,,,,,,,,,,," + latitude + "," + longitude + ", \n");
     }
 
     public static RatSighting parseEntry(String line) {
         assert line != null;
         String[] tokens = line.split("\t");
         assert tokens.length == 9;
-        RatSighting r = new RatSighting(tokens[0], tokens[1], tokens[2], tokens[3], tokens[4],
-                tokens[5], tokens[6], tokens[7], tokens[8]);
+        RatSighting r = new RatSighting(tokens[0], tokens[1], tokens[7], tokens[8], tokens[9],
+                tokens[16], tokens[23], tokens[49], tokens[50]);
         return r;
-    }*/
+    }
 
 
 }

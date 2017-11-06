@@ -101,13 +101,15 @@ public class RatSightingDatabase implements Serializable {
      *
      * @param writer
      */
-    /*void saveAsText(PrintWriter writer) {
-        System.out.println("RSDatabase saving: " + ratSightingMap.size() + " sightings" );
-        writer.println(ratSightingMap.values().toArray().length);
+    void saveAsText(PrintWriter writer) {
+        //System.out.println("RSDatabase saving: " + ratSightingMap.size() + " sightings" );
+        //writer.println(ratSightingMap.values().toArray().length);
 
-        for(Object r : ratSightingMap.values().toArray()) {
+        ratSightingMap.get(String.valueOf(nextKey - 1));
+
+        /*for(Object r : ratSightingMap.values().toArray()) {
             ((RatSighting) r).saveAsText(writer);
-        }
+        }*/
     }
 
     /**
@@ -115,7 +117,7 @@ public class RatSightingDatabase implements Serializable {
      *
      * @param reader  the file to read from
      */
-    /*void loadFromText(BufferedReader reader) {
+    void loadFromText(BufferedReader reader) {
         System.out.println("Loading Text File");
         //studentMap.clear();
         ratSightingMap.clear();
@@ -165,7 +167,7 @@ public class RatSightingDatabase implements Serializable {
         }
 
         return true;
-    }*/
+    }
 
     void regenMap() {
         if (ratSightingMap != null) {
@@ -181,4 +183,6 @@ public class RatSightingDatabase implements Serializable {
     public static RatSightingDatabase getInstance() {
         return instance;
     }
+
+
 }
