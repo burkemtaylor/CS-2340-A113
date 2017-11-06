@@ -97,6 +97,10 @@ public class ListActivity extends AppCompatActivity {
         Intent intent = new Intent(this, com.example.burketaylor.rattracker.controller.AddSightingActivity.class);
         startActivity(intent);
     }
+    public void goToGraph(View view){
+        Intent intent = new Intent(this, com.example.burketaylor.rattracker.controller.GraphActivity.class);
+        startActivity(intent);
+    }
 
     private class ScanTask extends AsyncTask<Boolean, Void, Void> {
 
