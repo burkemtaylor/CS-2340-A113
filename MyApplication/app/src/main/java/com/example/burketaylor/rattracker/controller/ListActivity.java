@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 
@@ -32,13 +33,21 @@ public class ListActivity extends AppCompatActivity {
     String[] mobileArray;
     ArrayAdapter adapter;
     ProgressBar scanProgressBar;
+    Button addSightingButton;
+    Button graphButton;
+    Button mapButton;
+    Button logoutButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        addSightingButton =(Button) findViewById(R.id.addsighting);
+        graphButton =(Button) findViewById(R.id.graphButton);
+        mapButton =(Button) findViewById(R.id.map);
+        logoutButton =(Button) findViewById(R.id.logout);
 
         scanProgressBar = (ProgressBar) findViewById(R.id.scanProgressBar);
 
@@ -106,7 +115,14 @@ public class ListActivity extends AppCompatActivity {
 
         protected void onPreExecute() {
             scanProgressBar.setVisibility(View.VISIBLE);
+            addSightingButton.setVisibility(View.INVISIBLE);
+            graphButton.setVisibility(View.INVISIBLE);
+            mapButton.setVisibility(View.INVISIBLE);
+            logoutButton.setVisibility(View.INVISIBLE);
+
+
         }
+
 
         protected Void doInBackground(Boolean... in) {
             boolean notLoaded = in[0];
@@ -130,6 +146,10 @@ public class ListActivity extends AppCompatActivity {
 
         protected void onPostExecute(Void v) {
             scanProgressBar.setVisibility(View.GONE);
+            addSightingButton.setVisibility(View.VISIBLE);
+            graphButton.setVisibility(View.VISIBLE);
+            mapButton.setVisibility(View.VISIBLE);
+            logoutButton.setVisibility(View.VISIBLE);
 
             adapter = new ArrayAdapter<String>(ListActivity.this,
                     android.R.layout.simple_list_item_1, mobileArray);
