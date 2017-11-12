@@ -73,8 +73,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 MarkerOptions markerOptions = new MarkerOptions();
 
                 markerOptions.position(latLng);
-                markerOptions.title("HELLLOOOO");
-                markerOptions.snippet("WOOOORLLD!!!!");
+                markerOptions.title("ID");
+                markerOptions.snippet("Info");
 
                 mainMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
                 //mainMap.addMarker(markerOptions);
