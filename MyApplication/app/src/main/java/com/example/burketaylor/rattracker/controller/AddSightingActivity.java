@@ -9,7 +9,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TimePicker;
 
 import com.example.burketaylor.rattracker.R;
 import com.example.burketaylor.rattracker.model.Database;
@@ -23,6 +25,17 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class AddSightingActivity extends AppCompatActivity {
+
+    private DatePicker datePicker;
+    private TimePicker timePicker;
+    private String dateTime;
+    private EditText locationType;
+    private EditText zipcode;
+    private EditText address;
+    private EditText city;
+    private EditText borough;
+    private EditText latitude;
+    private EditText longitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,27 +52,44 @@ public class AddSightingActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
     }
 
     /**
-     * Logs user out and returns to welcome screen
+     * Adds new rat sighting
      * @param view current view
      */
     public void confirm(View view) {
-        EditText dateTime = (EditText) findViewById(R.id.date_time);
-        EditText locationType = (EditText) findViewById(R.id.location_type);
-        EditText zipcode = (EditText) findViewById(R.id.zipcode);
-        EditText address = (EditText) findViewById(R.id.address);
-        EditText city = (EditText) findViewById(R.id.city);
-        EditText borough = (EditText) findViewById(R.id.borough);
-        EditText latitude = (EditText) findViewById(R.id.latitude);
-        EditText longitude = (EditText) findViewById(R.id.longitude);
+        datePicker = (DatePicker) findViewById(R.id.datePicker3);
+        timePicker = (TimePicker) findViewById(R.id.timePicker);
+        int month = datePicker.getMonth() + 1;
+        String monthString = "" + month;
+        if (month < 10) {
+            monthString = 0 + monthString;
+        }
+        int day = datePicker.getDayOfMonth();
+        String dayString = "" + day;
+        if (day < 10) {
+            dayString = 0 + dayString;
+        }
+        int year = datePicker.getYear();
+        int hour = timePicker.getHour();
+        int minute = timePicker.getMinute();
+        dateTime = monthString + "/" + dayString + "/" + year + " " + hour + ":" + minute;
+        Log.d("datetime", "fff " + dateTime);
+        locationType = (EditText) findViewById(R.id.location_type);
+        zipcode = (EditText) findViewById(R.id.zipcode);
+        address = (EditText) findViewById(R.id.address);
+        city = (EditText) findViewById(R.id.city);
+        borough = (EditText) findViewById(R.id.borough);
+        latitude = (EditText) findViewById(R.id.latitude);
+        longitude = (EditText) findViewById(R.id.longitude);
 
         RatSightingDatabase rsd = RatSightingDatabase.getInstance();
 
 
         //if () {
-        RatSighting newRatSighting = new RatSighting("0", dateTime.getText().toString(), locationType.getText().toString(),
+        RatSighting newRatSighting = new RatSighting("0", dateTime, locationType.getText().toString(),
                 zipcode.getText().toString(), address.getText().toString(), city.getText().toString(), borough.getText().toString(),
                 latitude.getText().toString(), longitude.getText().toString());
 
