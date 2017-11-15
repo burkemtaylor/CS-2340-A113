@@ -29,7 +29,7 @@ public class MapEntryManager {
         if (startDate == lastStartDate & endDate ==lastEndDate) {
             return lastDateEntries;
         } else {
-            List<Entry<String, RatSighting>> reportList = sortReports();
+            List<Entry<String, RatSighting>> reportList = sortReports(RatSightingDatabase.getMap());
             ArrayList<RatSighting> out = new ArrayList<>();
 
             for (int i = 0; i < reportList.size(); i++) {
@@ -57,7 +57,7 @@ public class MapEntryManager {
         if (range == lastRange) {
             return lastNumberEntries;
         } else {
-            List<Entry<String, RatSighting>> reportList = sortReports();
+            List<Entry<String, RatSighting>> reportList = sortReports(RatSightingDatabase.getMap());
             ArrayList<RatSighting> out = new ArrayList<>();
 
             for (int i = reportList.size() - (range + 1); i < reportList.size(); i++) {
@@ -71,8 +71,8 @@ public class MapEntryManager {
 
     }
 
-    private static List<Entry<String, RatSighting>> sortReports(){
-        HashMap<String, RatSighting> map = RatSightingDatabase.getMap();
+    private static List<Entry<String, RatSighting>> sortReports(HashMap<String, RatSighting> mapInput){
+        HashMap<String, RatSighting> map = mapInput;
         Set<Entry<String, RatSighting>> entries = map.entrySet();
 
 
