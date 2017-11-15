@@ -28,7 +28,7 @@ public class JUnitTests {
     }
 
     @Test
-    public void test4() {
+    public void sortReportsTest() {
 
     }
 }

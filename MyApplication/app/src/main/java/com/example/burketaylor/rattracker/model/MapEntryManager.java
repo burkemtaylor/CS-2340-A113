@@ -71,7 +71,7 @@ public class MapEntryManager {
 
     }
 
-    private static List<Entry<String, RatSighting>> sortReports(HashMap<String, RatSighting> mapInput){
+    public static List<Entry<String, RatSighting>> sortReports(HashMap<String, RatSighting> mapInput){
         HashMap<String, RatSighting> map = mapInput;
         Set<Entry<String, RatSighting>> entries = map.entrySet();
 
