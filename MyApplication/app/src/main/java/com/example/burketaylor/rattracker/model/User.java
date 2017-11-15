@@ -108,6 +108,9 @@ public class User implements Comparable<User>{
 
     @Override
     public int compareTo(User other) {
+        if (other == null) {
+            return -1;
+        }
         if (other.getUserName().equals(this.userName)
                 && other.getPassword().equals(this.password)) {
             return 0;
