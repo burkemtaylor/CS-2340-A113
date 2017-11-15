@@ -17,12 +17,6 @@ public class JUnitTests {
     Database database = new Database();
     User user;
 
-    @Before
-    public void setUp() {
-
-
-    }
-
     /*
      * Test getUser within Database
      * author: Burke Taylor
