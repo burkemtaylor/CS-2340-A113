@@ -35,7 +35,7 @@ public class MapEntryManager {
             for (int i = 0; i < reportList.size(); i++) {
                 RatSighting sighting = reportList.get(i).getValue();
                 int date = sighting.getTimeValue();
-                if (date >= startDate & date <= endDate) {
+                if (date >= startDate && date <= endDate) {
                     out.add(sighting);
                 }
                 Log.d("FINDING", "RANGE YUH");
@@ -108,12 +108,12 @@ public class MapEntryManager {
                 break;
 
             case 2:
-                if (((year % 4 == 0) &&
-                        !(year % 100 == 0))
-                        || (year % 400 == 0))
+                if (((year % 4 == 0) && !(year % 100 == 0)) || (year % 400 == 0)) {
                     numDays = 29;
-                else
+                }
+                else {
                     numDays = 28;
+                }
                 break;
 
         }

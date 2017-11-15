@@ -89,7 +89,7 @@ public class RatSightingDatabase implements Serializable {
         rsList.add(r);
     }
 
-    public List getList() {
+    public List<RatSighting> getList() {
         return rsList;
     }
 
