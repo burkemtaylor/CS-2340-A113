@@ -19,8 +19,7 @@ public class JUnitTests {
     }
 
     @Test
-    public void test2() {
-
+    public void testUserCompareTo() {
     }
 
     @Test
