@@ -250,9 +250,9 @@ public class RatSighting implements Comparable<RatSighting>, Serializable {
         assert line != null;
         String[] tokens = line.split("\t");
         assert tokens.length == 9;
-        RatSighting r = new RatSighting(tokens[0], tokens[1], tokens[7], tokens[8], tokens[9],
+        return new RatSighting(tokens[0], tokens[1], tokens[7], tokens[8], tokens[9],
                 tokens[16], tokens[23], tokens[49], tokens[50]);
-        return r;
+        //return r;
     }
 
 

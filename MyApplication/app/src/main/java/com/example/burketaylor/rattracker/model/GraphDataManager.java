@@ -21,14 +21,14 @@ public class GraphDataManager {
         int endMonth = (endDate / 100) % 100;
         int endYear = endDate / 10000;
 
-        int months = (endMonth - startMonth) + (endYear - startYear) * 12 + 1;
+        int months = (endMonth - startMonth) + ((endYear - startYear) * 12) + 1;
 
         ArrayList<RatSighting> temp = new ArrayList<>();
 
         for (int i = 0; i < months; i++) {
             temp = MapEntryManager.getReportbyMonth(startYear, startMonth);
 
-            int monthYear = startMonth * 10000 + startYear;
+            int monthYear = (startMonth * 10000) + startYear;
 
             data.add(new GraphData(monthYear, temp.size()));
             Log.d("ADDING ENTRY", String.valueOf(monthYear));

@@ -125,7 +125,7 @@ public class User implements Comparable<User>{
         assert line != null;
         String[] tokens = line.split("\t");
         assert tokens.length == 2;
-        User u = new User(tokens[0], tokens[1]);
-        return u;
+        return new User(tokens[0], tokens[1]);
+        //return u;
     }
 }
