@@ -66,13 +66,13 @@ public class User implements Comparable<User>{
     /**
      * returns user name
      */
-    private String getUserName() {
+    public String getUserName() {
         return userName;
     }
     /**
      * returns password
      */
-    private String getPassword() {
+    public String getPassword() {
         return password;
     }
     /**
