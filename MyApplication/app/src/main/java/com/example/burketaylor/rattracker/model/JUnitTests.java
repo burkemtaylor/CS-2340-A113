@@ -14,7 +14,7 @@ public class JUnitTests {
     @Before
 
     @Test
-    public void test1() {
+    public void getUserTest() {
 
     }
 
