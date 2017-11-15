@@ -32,7 +32,7 @@ public class JUnitTests {
 
         Assert.assertEquals("Same username & password", 0, user1.compareTo(user2));
         Assert.assertEquals("Different username & password", -1, user1.compareTo(user3));
-        Assert.assertEquals("Same username, different password", 0, user1.compareTo(user4));
+        Assert.assertEquals("Same username, different password", -1, user1.compareTo(user4));
         Assert.assertEquals("Different username, same password", -1, user3.compareTo(user4));
         Assert.assertEquals("Comparing with null", -1, user1.compareTo(null));
     }
