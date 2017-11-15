@@ -1,12 +1,14 @@
 package com.example.burketaylor.rattracker.controller;
 
 import android.graphics.drawable.ColorDrawable;
+import android.os.AsyncTask;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.PopupWindow;
 import android.widget.ProgressBar;
@@ -35,6 +37,9 @@ public class GraphActivity extends AppCompatActivity {
     private TextView endDateText;
     private DatePicker startPicker;
     private DatePicker endPicker;
+    private LineChart lineChart;
+    private ProgressBar graphProgress;
+    private Button graphOptionsButton;
 
     private int start = 20160100;
     private int end = 20161200;
@@ -46,25 +51,13 @@ public class GraphActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_graph);
 
-        LineChart lineChart = (LineChart) findViewById(R.id.chart);
+        lineChart = (LineChart) findViewById(R.id.chart);
+        graphProgress = (ProgressBar) findViewById(R.id.graphProgressBar);
+        graphOptionsButton = (Button) findViewById(R.id.button2);
+        lineChart.setNoDataText("Loading data. This may take a while...");
+        new DataTask().execute();
 
-        GraphDataManager.generateGraphData(start, end);
 
-        List<Entry> entries = convertDataSetToEntry(GraphDataManager.getDataList());
-
-        LineDataSet dataset = new LineDataSet(entries, "# of Calls");
-
-        Log.d("APP", "Made dataset with : " + entries.size());
-
-        LineData data = new LineData(dataset);
-        dataset.setColors(ColorTemplate.COLORFUL_COLORS); //
-
-        dataset.setDrawFilled(true);
-
-        lineChart.setData(data);
-        lineChart.animateY(5000);
-
-        lineChart.getDescription().setText("Rat Sightings per Month");
 
     }
 
@@ -144,29 +137,56 @@ public class GraphActivity extends AppCompatActivity {
         start = (Integer.parseInt(startDateString) / 100) * 100;
         end = (Integer.parseInt(endDateString) / 100) * 100;
 
-        LineChart lineChart = (LineChart) findViewById(R.id.chart);
-
-        lineChart.clear();
-        GraphDataManager.clear();
-
-        GraphDataManager.generateGraphData(start, end);
-
-        List<Entry> entries = convertDataSetToEntry(GraphDataManager.getDataList());
-
-        LineDataSet dataset = new LineDataSet(entries, "# of Calls");
-
-        Log.d("APP", "Made dataset with : " + entries.size());
-
-        LineData data = new LineData(dataset);
-        dataset.setColors(ColorTemplate.COLORFUL_COLORS); //
-
-        dataset.setDrawFilled(true);
-
-        lineChart.setData(data);
-        lineChart.animateY(5000);
-
-        lineChart.getDescription().setText("Rat Sightings per Month");
-
+        new DataTask().execute();
         optionsWindow.dismiss();
+    }
+
+    private class DataTask extends AsyncTask<Void, Void, Void> {
+        private LineData data;
+
+        @Override
+        protected void onPreExecute() {
+            graphProgress.setVisibility(View.VISIBLE);
+            graphOptionsButton.setVisibility(View.INVISIBLE);
+            lineChart.clear();
+
+        }
+
+        @Override
+        protected Void doInBackground(Void[] params) {
+
+
+            GraphDataManager.clear();
+            GraphDataManager.generateGraphData(start, end);
+
+            List<Entry> entries = convertDataSetToEntry(GraphDataManager.getDataList());
+
+            LineDataSet dataset = new LineDataSet(entries, "# of Calls");
+
+            Log.d("APP", "Made dataset with : " + entries.size());
+
+            data = new LineData(dataset);
+            dataset.setColors(ColorTemplate.COLORFUL_COLORS); //
+            dataset.setDrawFilled(true);
+
+
+
+
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void stuff) {
+            graphProgress.setVisibility(View.INVISIBLE);
+            graphOptionsButton.setVisibility(View.VISIBLE);
+
+
+            lineChart.setData(data);
+            lineChart.animateY(5000);
+
+            lineChart.getDescription().setText("Rat Sightings per Month");
+
+        }
     }
 }

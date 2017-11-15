@@ -29,4 +29,13 @@ tools:context="com.example.burketaylor.rattracker.controller.GraphActivity">
         android:onClick="showOptions"
         android:text="Options" />
 
+    <ProgressBar
+        android:id="@+id/graphProgressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button2"
+        android:layout_centerHorizontal="true"
+        tools:visibility="visible" />
+
 </RelativeLayout>

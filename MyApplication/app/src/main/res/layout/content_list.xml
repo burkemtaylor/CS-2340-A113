@@ -6,15 +6,16 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.burketaylor.rattracker.controller.ListActivity"
-    tools:layout_editor_absoluteX="0dp"
+    tools:showIn="@layout/activity_list"
     tools:layout_editor_absoluteY="205dp"
-    tools:showIn="@layout/activity_list">
+    tools:layout_editor_absoluteX="0dp">
 
     <ProgressBar
         android:id="@+id/scanProgressBar"
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="48dp"
         android:layout_marginTop="16dp"
         app:layout_constraintLeft_toRightOf="@+id/addsighting"
         app:layout_constraintTop_toTopOf="parent"
@@ -25,11 +26,12 @@
     <ListView
         android:id="@+id/mobile_list"
         android:layout_width="0dp"
-        android:layout_height="300dp"
-        android:layout_marginTop="16dp"
+        android:layout_height="410dp"
+        android:layout_marginTop="76dp"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logout"
+        app:layout_constraintTop_toTopOf="parent"
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintRight_creator="1"
         tools:layout_constraintTop_creator="1" />
@@ -52,6 +54,7 @@
         android:layout_height="41dp"
         android:onClick="logout"
         android:text="Logout"
+        android:textSize="10sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/map"
         app:layout_constraintRight_toRightOf="parent"
         tools:layout_constraintBaseline_creator="1"
@@ -61,11 +64,12 @@
         android:id="@+id/map"
         android:layout_width="82dp"
         android:layout_height="46dp"
-        android:layout_marginLeft="36dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="16dp"
         android:onClick="mapView"
         android:text="Map"
-        app:layout_constraintLeft_toRightOf="@+id/scanProgressBar"
-        app:layout_constraintTop_toTopOf="@+id/scanProgressBar"
+        app:layout_constraintEnd_toStartOf="@+id/logout"
+        app:layout_constraintTop_toTopOf="parent"
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintTop_creator="1" />
 
@@ -73,9 +77,13 @@
         android:id="@+id/graphButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:onClick="goToGraph"
         android:text="Graph"
+        app:layout_constraintEnd_toStartOf="@+id/map"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toEndOf="@+id/addsighting"
         app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>
