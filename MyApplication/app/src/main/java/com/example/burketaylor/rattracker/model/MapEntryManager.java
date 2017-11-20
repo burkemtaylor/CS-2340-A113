@@ -25,6 +25,13 @@ public class MapEntryManager {
     private static int lastStartDate = 10000000;
     private static int lastEndDate = 10000000;
 
+
+    /**
+     *
+     * @param startDate the beginning date of the range in the format YYYYMMDD
+     * @param endDate the ending date of the range in the format YYYYMMDD
+     * @return the sorted list of all rat sightings withing the provided date range
+     */
     public static ArrayList<RatSighting> getReportsByDate(int startDate, int endDate) {
         if (startDate == lastStartDate & endDate ==lastEndDate) {
             return lastDateEntries;
@@ -53,6 +60,11 @@ public class MapEntryManager {
 
     }
 
+    /**
+     *
+     * @param range the specified number of the most recent rat reports
+     * @return an ArrayList of the specified amount of recent rat reports
+     */
     public static ArrayList<RatSighting> getReportsByRange(int range) {
         if (range == lastRange) {
             return lastNumberEntries;
@@ -70,6 +82,12 @@ public class MapEntryManager {
         }
 
     }
+
+    /**
+     *
+     * @param mapInput  the list of rat reports that needs to be sorted
+     * @return the date-sorted list of rat reports
+     */
 
     public static List<Entry<String, RatSighting>> sortReports(HashMap<String, RatSighting> mapInput){
         HashMap<String, RatSighting> map = mapInput;
@@ -90,6 +108,13 @@ public class MapEntryManager {
         return reportList;
 
     }
+
+    /**
+     *
+     * @param year the year from which the user wants rat reports from
+     * @param month the month from which the user wants rat reports from
+     * @return an ArrayList of all rat reports from a specified year and month
+     */
 
     public static ArrayList<RatSighting> getReportbyMonth(int year, int month) {
 
